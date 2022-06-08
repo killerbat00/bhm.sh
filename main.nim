@@ -137,7 +137,7 @@ proc serve*(settings: Settings) =
 
         try:
             printReqInfo(settings, req)
-            let route = toSeq(req.url.path.split("/"))[1 .. ^1]
+            let route = toSeq(req.url.path.split("/"))[1 .. ^1] #always starts with `/`; discard first item
 
             if (route.len < 1) or (route[0] == "") or (route[0] == "index"):
                 res = index(settings, req, data, route, htmlContentHeader)
@@ -171,7 +171,7 @@ when isMainModule:
         title: "bhm.sh",
         address: "0.0.0.0",
         name: "bhm.sh",
-        version: "0.1",
+        version: "0.2",
         files: files,
         domain: AF_INET,
         printLogging: true,
