@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        /* variables */
+        :root {
+            --body-font-size: 16px;
+            --small-body-font-size: 14px;
+        }
+        /*reset */
+        *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+            all: unset;
+            display: revert;
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        a,
+        button {
+            cursor: revert;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        /* typography */
+        @font-face {
+            font-family: 'volkhovregular';
+            src: url('./static/fonts/volkhov-regular-webfont.woff2') format('woff2'), url('./static/fonts/volkhov-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        html {
+            overflow-y: scroll;
+            font-family: 'volkhovregular';
+            font-size: var(--body-font-size);
+            line-height: 1.5em;
+        }
+        
+        @media screen and (max-width: 975px) {
+            html {
+                font-size: var(--small-body-font-size);
+            }
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: normal;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            line-height: 2rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            line-height: 1.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        h4 {
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* global styles */
+        ::selection {
+            background-color: rgba(250, 115, 0, 0.5);
+        }
+
+        a {
+            color: #f80;
+            border-color: #f80;
+            text-decoration: underline;
+        }
+        
+        a:hover,
+        a:visited:hover {
+            color: #0077ff;
+        }
+        
+        a:visited {
+            color: purple;
+        }
+
+        /* main template */
+        #content-container {
+            max-width: 800px;
+            min-width: 300px;
+            margin: 0 auto;
+            margin-top: .75rem;
+        }
+
+        #header {
+            margin: 1.25rem 0 0.5rem -5rem;
+        }
+
+        @media screen and (max-width: 975px) {
+            #content-container {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+            #header {
+                margin-left: 0;
+            }
+        }
+
+        #homeLink,
+        #homeLink:visited {
+            color: unset;
+            text-decoration: none;
+        }
+
+        nav>p>a,
+        nav>p>a:visited {
+            color: unset;
+        }
+
+        #homeLink:hover,
+        #homeLink:visited:hover,
+        nav>p>a:hover,
+        nav>p>a:visited:hover {
+            color: #f80;
+            border-color: #f80;
+        }
+
+        #header>h1 {
+            margin: 0;
+        }
+
+        nav p {
+            font-size: 1.25rem;
+            line-height: 1rem;
+            text-align: center;
+            display: grid;
+            grid-auto-flow: column;
+        }
+
+        @media screen and (max-width: 600px) {
+            nav p {
+                line-height: 1.25rem;
+                display: block;
+            }
+        }
+
+        nav>p>a {
+            padding: 8px;
+        }
+
+        nav>p>a>small {
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        nav>p:first-child,
+        div>p:first-child {
+            margin-top: 0;
+        }
+
+        #chyron {
+            margin-left: 30%;
+            max-width: fit-content;
+            background: rgb(255, 0, 0);
+            background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 165, 0, 1) 16.6%, rgba(255, 255, 0, 1) 33.2%, rgba(0, 255, 0, 1) 49.8%, rgba(0, 0, 255, 1) 66.4%, rgba(75, 0, 130, 1) 83%, rgba(127, 0, 255, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        #content {
+            margin-top: 1.25rem;
+        }
+        
+        #genString {
+            font-size: 70%;
+            margin-top: 5%;
+            text-align: center;
+        }
+        
+    </style>
+    <meta charset="utf-8">
+
+    <title>{{#pageTitle}}</title>
+
+    <meta name="description" content="Brian Houston Morrow's home on the internet.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Brian Houston Morrow">
+    {{#canonicalLink}}
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/img/favicon-16x16.png">
+    <link rel="manifest" href="./static/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/img/apple-touch-icon.png">
+
+    <meta name="theme-color" content="#f80">
+</head>
+
+<body>
+    <div id="content-container">
+        <div id="header">
+            <h1><a id="homeLink" href="./">{{#pageTitle}}</a></h1>
+            <div id="chyron">{{#chyron}}</div>
+        </div>
+        <nav>
+            <p>
+                <a href="./">Home</a>
+                <a href="./now">Now</a>
+                <a href="./projects">Projects</a>
+                <a href="./about">About</a>
+                <a href="./resume">Resume</a>
+                <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
+                <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
+            </p>
+        </nav>
+        <div id="content">{{#content}}</div>
+        <p id="genString">{{#generationString}}</p>
+    </div>
+</body>
+
+</html>
