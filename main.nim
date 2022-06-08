@@ -36,13 +36,14 @@ type
         chyron: string
         content: string
 
-const validDirs = ["static/fonts", "static/js", "static/styles", "static/templates"]
+const validDirs = ["static/fonts", "static/js", "static/styles", "static/templates", "static/img"]
 const mainTemplate = staticRead("static/layouts/mainTemplate.html")
 
 # gzip/brotli the files eventually - that'd be cool
 proc slurpFiles(): Table[string, string] =
     result = initTable[string, string]()
     for dir in walkDirRec("static", {pcDir}):
+        echo dir
         if not (dir in validDirs):
             continue
 
@@ -144,7 +145,7 @@ proc serve*(settings: Settings) =
             elif (route[0] in settings.files):
                 res = sendTemplatedFile(settings, req, route, data, htmlContentHeader)
 
-            elif (req.url.path in settings.files):
+            elif (req.url.path[1 .. ^1] in settings.files):
                 res = sendStaticFile(settings, req)
 
             else:
