@@ -1,0 +1,24 @@
+#!/bin/bash
+
+MODE=$1
+OUTPUT_FILE=bin/bhm.sh
+SRC_FILE=main.nim
+
+if [[ "$MODE" == "dev" ]]; then
+	nim c -o:$OUTPUT_FILE $2 $SRC_FILE
+elif [[ "$MODE" == "DEV" ]]; then
+	nim c -o:$OUTPUT_FILE $2 $SRC_FILE
+elif [[ "$MODE" == "rls" ]]; then
+	nim c -o:$OUTPUT_FILE -d:release $2 $SRC_FILE
+elif [[ "$MODE" == "RLS" ]]; then
+	nim c -o:$OUTPUT_FILE -d:release $2 $SRC_FILE
+else
+	echo "Usage:"
+	echo "  ./bhm.sh {dev|rls} [-r]"
+	echo ""
+	echo "  Options:"
+	echo "    dev - build development version"
+	echo "    rls - build release version"
+	echo "    -r  - run after building"
+fi
+
