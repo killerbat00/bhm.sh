@@ -7,7 +7,20 @@
         :root {
             --body-font-size: 16px;
             --small-body-font-size: 14px;
+
+            --bg-color: rgb(255, 255, 255);
+            --text-color: rgb(0, 0, 0);
+            --blockquote-color: rgb(238, 238, 238);
         }
+
+        @media screen and (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: rgb(40, 40, 40);
+                --text-color: rgb(230, 230, 230);
+                --blockquote-color: rgb(100, 100, 100);
+            }
+        }
+
         /*reset */
         *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
             all: unset;
@@ -28,7 +41,7 @@
         img {
             max-width: 100%;
         }
-        
+
         /* typography */
         @font-face {
             font-family: 'volkhovregular';
@@ -42,6 +55,8 @@
             font-family: 'volkhovregular';
             font-size: var(--body-font-size);
             line-height: 1.5em;
+            background: var(--bg-color);
+            color: var(--text-color);
         }
         
         @media screen and (max-width: 975px) {
@@ -100,17 +115,13 @@
 
         a {
             color: #f80;
-            border-color: #f80;
             text-decoration: underline;
+            font-weight: bolder;
         }
         
         a:hover,
         a:visited:hover {
             color: #0077ff;
-        }
-        
-        a:visited {
-            color: purple;
         }
 
         /* main template */
@@ -139,11 +150,13 @@
         #homeLink:visited {
             color: unset;
             text-decoration: none;
+            font-weight: unset;
         }
 
         nav>p>a,
         nav>p>a:visited {
             color: unset;
+            font-weight: unset;
         }
 
         #homeLink:hover,
@@ -151,7 +164,6 @@
         nav>p>a:hover,
         nav>p>a:visited:hover {
             color: #f80;
-            border-color: #f80;
         }
 
         #header>h1 {
@@ -166,9 +178,9 @@
             grid-auto-flow: column;
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 450px) {
             nav p {
-                line-height: 1.25rem;
+                line-height: 2rem;
                 display: block;
             }
         }
@@ -192,6 +204,7 @@
             max-width: fit-content;
             background: rgb(255, 0, 0);
             background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 165, 0, 1) 16.6%, rgba(255, 255, 0, 1) 33.2%, rgba(0, 255, 0, 1) 49.8%, rgba(0, 0, 255, 1) 66.4%, rgba(75, 0, 130, 1) 83%, rgba(127, 0, 255, 1) 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -205,7 +218,24 @@
             margin-top: 5%;
             text-align: center;
         }
+
+        /* index styles */
+        blockquote p {
+            padding: .75rem;
+            background: var(--blockquote-color);
+            border-radius: 5px;
+            border-left-color: #f80;
+            border-left-style: solid;
+            border-left-width: 5px;
+        }
         
+        blockquote p::before {
+            content: '\201C';
+        }
+        
+        blockquote p::after {
+            content: '\201D';
+        }
     </style>
     <meta charset="utf-8">
 
@@ -235,9 +265,9 @@
             <p>
                 <a href="./">Home</a>
                 <a href="./now">Now</a>
-                <a href="./projects">Projects</a>
+                <!--<a href="./projects">Projects</a>-->
                 <a href="./about">About</a>
-                <a href="./resume">Resume</a>
+                <!--<a href="./resume">Resume</a>-->
                 <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
                 <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
             </p>
