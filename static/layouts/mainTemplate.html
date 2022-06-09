@@ -11,7 +11,7 @@
             --bg-color: rgb(255, 255, 255);
             --text-color: rgb(0, 0, 0);
             --blockquote-color: rgb(238, 238, 238);
-            --text-color-light: rgb(200, 200, 200);
+            --text-color-aside: rgb(150, 150, 150);
         }
 
         @media screen and (prefers-color-scheme: dark) {
@@ -19,7 +19,7 @@
                 --bg-color: rgb(40, 40, 40);
                 --text-color: rgb(230, 230, 230);
                 --blockquote-color: rgb(100, 100, 100);
-                --text-color-light: rgb(80, 80, 80);
+                --text-color-aside: rgb(120, 120, 120);
             }
         }
 
@@ -133,8 +133,8 @@
             margin-left: 8px;
         }
 
-        h3 + small {
-            color: var(--text-color-light);
+        .aside {
+            color: var(--text-color-aside);
         }
 
         /* main template */
