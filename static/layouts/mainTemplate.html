@@ -11,6 +11,7 @@
             --bg-color: rgb(255, 255, 255);
             --text-color: rgb(0, 0, 0);
             --blockquote-color: rgb(238, 238, 238);
+            --text-color-light: rgb(200, 200, 200);
         }
 
         @media screen and (prefers-color-scheme: dark) {
@@ -18,6 +19,7 @@
                 --bg-color: rgb(40, 40, 40);
                 --text-color: rgb(230, 230, 230);
                 --blockquote-color: rgb(100, 100, 100);
+                --text-color-light: rgb(80, 80, 80);
             }
         }
 
@@ -73,7 +75,7 @@
             font-weight: normal;
         }
         
-        h1 {
+        h1, .header {
             font-size: 2rem;
             line-height: 2rem;
             margin-top: 1.25rem;
@@ -121,6 +123,18 @@
         a:hover,
         a:visited:hover {
             color: #0077ff;
+        }
+
+        i {
+            font-style: oblique;
+        }
+
+        cite {
+            margin-left: 8px;
+        }
+
+        h3 + small {
+            color: var(--text-color-light);
         }
 
         /* main template */
@@ -267,9 +281,9 @@
             <p>
                 <a href="./">Home</a>
                 <a href="./now">Now</a>
-                <!--<a href="./projects">Projects</a>-->
+                <a href="./music">Music I Like</a>
                 <a href="./about">About</a>
-                <!--<a href="./resume">Resume</a>-->
+                <a href="./resume">Resume</a>
                 <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
                 <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
             </p>
