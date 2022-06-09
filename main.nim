@@ -224,7 +224,7 @@ when isMainModule:
         title: "bhm.sh",
         address: "0.0.0.0",
         name: "bhm.sh",
-        version: "0.2",
+        version: "0.3",
         files: files,
         domain: AF_INET,
         printLogging: true,
