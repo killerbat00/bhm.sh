@@ -43,7 +43,6 @@ type
 const validDirs = ["static/fonts", "static/js", "static/styles", "static/templates", "static/img"]
 const mainTemplate = staticRead("static/layouts/mainTemplate.html")
 
-
 # gzip/brotli the files eventually - that'd be cool
 proc slurpFiles(): Table[string, string] =
     result = initTable[string, string]()
@@ -229,7 +228,6 @@ when isMainModule:
         domain: AF_INET,
         printLogging: true,
     )
-
 
     var addrInfo = getAddrInfo(settings.address, settings.port, settings.domain)
     if addrInfo == nil:
