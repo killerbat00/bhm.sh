@@ -14,7 +14,7 @@ elif [[ "$MODE" == "RLS" ]]; then
 	nim c -o:$OUTPUT_FILE -d:release $2 $SRC_FILE
 else
 	echo "Usage:"
-	echo "  ./bhm.sh {dev|rls} [-r]"
+	echo "  ./build.sh {dev|rls} [-r]"
 	echo ""
 	echo "  Options:"
 	echo "    dev - build development version"
