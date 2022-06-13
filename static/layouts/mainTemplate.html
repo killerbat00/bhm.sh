@@ -188,16 +188,16 @@
             font-weight: unset;
         }
 
-        nav>p>a,
-        nav>p>a:visited {
+        nav>a,
+        nav>a:visited {
             color: unset;
             font-weight: unset;
         }
 
         #homeLink:hover,
         #homeLink:visited:hover,
-        nav>p>a:hover,
-        nav>p>a:visited:hover {
+        nav>a:hover,
+        nav>a:visited:hover {
             color: #f80;
         }
 
@@ -206,7 +206,7 @@
             font-family: 'volkhovregular';
         }
 
-        nav p {
+        nav {
             font-size: 1.25rem;
             line-height: 1rem;
             text-align: center;
@@ -216,22 +216,22 @@
         }
 
         @media screen and (max-width: 450px) {
-            nav p {
+            nav {
                 line-height: 2rem;
                 display: block;
             }
         }
 
-        nav>p>a {
+        nav>a {
             padding: 8px;
         }
 
-        nav>p>a>small {
+        nav>a>small {
             vertical-align: middle;
             font-size: 12px;
         }
 
-        nav>p:first-child,
+        nav:first-child,
         div>p:first-child {
             margin-top: 0;
         }
@@ -299,15 +299,13 @@
             <div id="chyron">{{#chyron}}</div>
         </div>
         <nav>
-            <p>
-                <a href="./">Home</a>
-                <a href="./now">Now</a>
-                <!--<a href="./music">Music I Like</a>-->
-                <a href="./about">About</a>
-                <a href="./resume">Resume</a>
-                <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
-                <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
-            </p>
+            <a href="./">Home</a>
+            <a href="./now">Now</a>
+            <!--<a href="./music">Music I Like</a>-->
+            <a href="./about">About</a>
+            <a href="./resume">Resume</a>
+            <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
+            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
         </nav>
         <div id="content">{{#content}}</div>
         <p id="genString">{{#generationString}}</p>
