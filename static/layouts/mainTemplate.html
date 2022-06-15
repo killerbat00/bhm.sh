@@ -197,12 +197,12 @@
         }
 
         #header-col-1 {
-            width: 90%;
+            width: 85%;
             float: left;
         }
 
         #header-col-2 {
-            width: 10%;
+            width: 15%;
             float: right;
         }
 
@@ -253,11 +253,13 @@
 
         #darkMode {
             display: block;
+            margin: 0 auto;
         }
 
         @media screen and (prefers-color-scheme: dark) {
             #lightMode {
                 display: block;
+                margin: 0 auto;
             }
 
             #darkMode {
@@ -394,30 +396,73 @@
         <p id="genString">{{#generationString}}</p>
     </div>
     <script>
-        var darkModeBtn = document.getElementById("darkMode");
-        var lightModeBtn = document.getElementById("lightMode");
+        let colors = {
+            dark: {
+                bgcolor: "rgb(40, 40, 40)",
+                textcolor: "rgb(230, 230, 230)",
+                bqcolor: "rgb(100, 100, 100)",
+                aside: "rgb(120, 120, 120)"
+            },
+            light: {
+                bgcolor: "rgb(255, 255, 255)",
+                textcolor: "rgb(0, 0, 0)",
+                bqcolor: "rgb(238, 238, 238)",
+                aside: "rgb(150, 150, 150)"
+            }
+        }
+        let root = document.documentElement;
+        let darkModeBtn = document.getElementById("darkMode");
+        let lightModeBtn = document.getElementById("lightMode");
+
+        const setDarkMode = () => {
+            root.style.setProperty("--bg-color", colors.dark.bgcolor);
+            root.style.setProperty("--text-color", colors.dark.textcolor);
+            root.style.setProperty("--blockquote-color", colors.dark.bqcolor);
+            root.style.setProperty("--text-color-aside", colors.dark.aside);
+            darkModeBtn.style.display = "none";
+            lightModeBtn.style.display = "block";
+            localStorage.removeItem("lightMode");
+            localStorage.setItem("darkMode", "enabled");
+        }
+
+        const setLightMode = () => {
+            root.style.setProperty("--bg-color", colors.light.bgcolor);
+            root.style.setProperty("--text-color", colors.light.textcolor);
+            root.style.setProperty("--blockquote-color", colors.light.bqcolor);
+            root.style.setProperty("--text-color-aside", colors.light.aside);
+            lightModeBtn.style.display = "none";
+            darkModeBtn.style.display = "block";
+            localStorage.removeItem("darkMode");
+            localStorage.setItem("lightMode", "enabled");
+        }
+
+        var isDarkMode = localStorage.getItem("darkMode") === "enabled";
+        let isLightMode = localStorage.getItem("lightMode") === "enabled";
+
+        if (isDarkMode) {
+            setDarkMode();
+        }
+
+        if (isLightMode) {
+            setLightMode();
+        }
 
         if (darkModeBtn) {
-            darkModeBtn.addEventListener("click", () => {
-                var root = document.documentElement;
-                root.style.setProperty("--bg-color", "rgb(40, 40, 40)");
-                root.style.setProperty("--text-color", "rgb(230, 230, 230)");
-                root.style.setProperty("--blockquote-color", "rgb(100, 100, 100)");
-                root.style.setProperty("--text-color-aside", "rgb(120, 120, 120)");
-                darkModeBtn.style.display = "none";
-                lightModeBtn.style.display = "block";
-            });
+            darkModeBtn.addEventListener("click", setDarkMode);
         }
 
         if (lightModeBtn) {
-            lightModeBtn.addEventListener("click", () => {
-                var root = document.documentElement;
-                root.style.setProperty("--bg-color", "rgb(255, 255, 255)");
-                root.style.setProperty("--text-color", "rgb(0, 0, 0)");
-                root.style.setProperty("--blockquote-color", "rgb(238, 238, 238)");
-                root.style.setProperty("--text-color-aside", "rgb(150, 150, 150)");
-                lightModeBtn.style.display = "none";
-                darkModeBtn.style.display = "block";
+            lightModeBtn.addEventListener("click", setLightMode);
+        }
+
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", event => {
+                const newColorScheme = event.matches ? "dark": "light";
+                if (newColorScheme === "dark") {
+                    setDarkMode();
+                } else {
+                    setLightMode();
+                }
             });
         }
     </script>
