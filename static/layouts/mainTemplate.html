@@ -421,6 +421,7 @@
             root.style.setProperty("--text-color-aside", colors.dark.aside);
             darkModeBtn.style.display = "none";
             lightModeBtn.style.display = "block";
+            lightModeBtn.style.margin = "0 auto";
             localStorage.removeItem("lightMode");
             localStorage.setItem("darkMode", "enabled");
         }
@@ -432,6 +433,7 @@
             root.style.setProperty("--text-color-aside", colors.light.aside);
             lightModeBtn.style.display = "none";
             darkModeBtn.style.display = "block";
+            darkModeBtn.style.margin = "0 auto";
             localStorage.removeItem("darkMode");
             localStorage.setItem("lightMode", "enabled");
         }
