@@ -1,7 +1,8 @@
 #!/bin/bash
 
 MODE=$1
-OUTPUT_FILE=bin/bhm.sh
+DEV_OUTPUT_FILE=bin/bhm.sh-DEV
+RLS_OUTPUT_FILE=bin/bhm.sh
 SRC_FILE=main.nim
 
 if [[ "$MODE" == "dev" ]]; then
