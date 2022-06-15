@@ -132,6 +132,14 @@
             color: #0077ff;
         }
 
+        a:focus,
+        a:focus-visible,
+        a:focus-within {
+            padding: 6px;
+            border: 2px solid #f80;
+            border-radius: 5px;
+        }
+
         i {
             font-style: oblique;
         }
@@ -154,10 +162,26 @@
         }
 
         object {
-            width: 100%;
+            width: 120%;
             height: 100vh;
             background-color: rgb(255, 255, 255);
             color:rgb(0, 0, 0);
+            margin-left: -10%;
+        }
+
+        button {
+            all: revert;
+        }
+
+        button:focus,
+        button:focus-visible,
+        button:focus-within {
+            border: 2px solid #f80;
+            border-radius: 5px;
+        }
+
+        ul {
+            line-height: 1.75rem;
         }
 
         /* main template */
@@ -171,6 +195,16 @@
 
         #header {
             margin: 1.25rem 0 0.5rem -5rem;
+        }
+
+        #header-col-1 {
+            width: 90%;
+            float: left;
+        }
+
+        #header-col-2 {
+            width: 10%;
+            float: right;
         }
 
         @media screen and (max-width: 975px) {
@@ -203,9 +237,27 @@
             color: #f80;
         }
 
-        #header>h1 {
+        #header>div>h1 {
             margin: 0;
             font-family: 'volkhovregular';
+        }
+
+        #lightMode {
+            display: none;
+        }
+
+        #darkMode {
+            display: block;
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            #lightMode {
+                display: block;
+            }
+
+            #darkMode {
+                display: none;
+            }
         }
 
         nav {
@@ -229,7 +281,6 @@
         }
 
         nav>a>small {
-            vertical-align: middle;
             font-size: 12px;
         }
 
@@ -249,7 +300,10 @@
         }
         
         #content {
-            margin-top: 1.25rem;
+            margin-top: 1.2rem;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         #genString {
@@ -276,6 +330,15 @@
             content: '\201D';
         }
     </style>
+    <noscript>
+        <style>
+            #darkMode,
+            #lightMode {
+                display: none;
+            }
+        </style>
+    </noscript>
+
     <meta charset="utf-8">
 
     <title>Brian Houston Morrow | Software Developer</title>
@@ -297,8 +360,15 @@
 <body>
     <div id="content-container">
         <div id="header">
-            <h1><a id="homeLink" href="./">{{#pageTitle}}</a></h1>
-            <div id="chyron">{{#chyron}}</div>
+            <div id="header-col-1">
+                <h1><a id="homeLink" href="./">{{#pageTitle}}</a></h1>
+                <div id="chyron">{{#chyron}}</div>
+            </div>
+            <div id="header-col-2">
+                <button tabindex="0" type="button" id="darkMode">Dark Mode</button>
+                <button tabindex="0" type="button" id="lightMode">Light Mode</button>
+            </div>
+            <div style="clear: both"></div>
         </div>
         <nav>
             <a href="./">Home</a>
@@ -312,6 +382,34 @@
         <div id="content">{{#content}}</div>
         <p id="genString">{{#generationString}}</p>
     </div>
+    <script>
+        var darkModeBtn = document.getElementById("darkMode");
+        var lightModeBtn = document.getElementById("lightMode");
+
+        if (darkModeBtn) {
+            darkModeBtn.addEventListener("click", () => {
+                var root = document.documentElement;
+                root.style.setProperty("--bg-color", "rgb(40, 40, 40)");
+                root.style.setProperty("--text-color", "rgb(230, 230, 230)");
+                root.style.setProperty("--blockquote-color", "rgb(100, 100, 100)");
+                root.style.setProperty("--text-color-aside", "rgb(120, 120, 120)");
+                darkModeBtn.style.display = "none";
+                lightModeBtn.style.display = "block";
+            });
+        }
+
+        if (lightModeBtn) {
+            lightModeBtn.addEventListener("click", () => {
+                var root = document.documentElement;
+                root.style.setProperty("--bg-color", "rgb(255, 255, 255)");
+                root.style.setProperty("--text-color", "rgb(0, 0, 0)");
+                root.style.setProperty("--blockquote-color", "rgb(238, 238, 238)");
+                root.style.setProperty("--text-color-aside", "rgb(150, 150, 150)");
+                lightModeBtn.style.display = "none";
+                darkModeBtn.style.display = "block";
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -1,9 +1,10 @@
-[/] (halfway - header still uses a webfont, but we host it) -use web safe fonts
+[X] (halfway - header still uses a webfont, but we host it) -use web safe fonts
 [X] - pay attention to typography. site is simple, excel through execution
-[/] (dark mode with CSS) - quirks can be simple & fun. orange/dark mode.
 [X] - rainbow for pride month
-- highlight active page in navbar links (orange, duh)
-- layout/plans for Music I Like (bootleg videos? obscure Youtube links? Ranked lists? Reviews?)
-- personalize more, draft everything in the open; why not? (sidenote: IS this better than the meta-brella or tiktok nation, remember the bots.)
-- publish!
+[X] - publish!
+[X] - dark mode with CSS. add javascript?!
+[ ] - highlight active page in navbar links (orange, duh)
+[ ] - layout/plans for Music I Like (bootleg videos? obscure Youtube links? Ranked lists? Reviews?)
+[ ] - - How about a "Things I Like" instead?
+[ ] - personalize more, draft everything in the open; why not? (sidenote: IS this better than the meta-brella or tiktok nation, remember the bots.)
 
