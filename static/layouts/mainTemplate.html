@@ -135,7 +135,6 @@
         a:focus,
         a:focus-visible,
         a:focus-within {
-            padding: 6px;
             border: 2px solid #f80;
             border-radius: 5px;
         }
@@ -237,6 +236,12 @@
             color: #f80;
         }
 
+        #homeLink:focus,
+        #homeLink:focus-within,
+        #homeLink:focus-visible {
+            margin-left: -2px;
+        }
+
         #header>div>h1 {
             margin: 0;
             font-family: 'volkhovregular';
@@ -278,6 +283,12 @@
 
         nav>a {
             padding: 8px;
+        }
+
+        nav>a:focus,
+        nav>a:focus-visible,
+        nav>a:focus-within {
+            padding: 6px;
         }
 
         nav>a>small {
