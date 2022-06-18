@@ -1,6 +1,6 @@
 #!/bin/bash
 
 ./build.sh rls
-ssh -t bhm.sh 'sudo service bhmsh stop'
+ssh -t root@bhm.sh 'service bhmsh stop'
 scp bin/bhm.sh bhm.sh:~/
-ssh -t bhm.sh 'sudo service bhmsh start'
+ssh -t root@bhm.sh 'service bhmsh start'
