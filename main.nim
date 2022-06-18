@@ -7,9 +7,10 @@ import
     random,
     sequtils,
     strutils,
+    tables,
     times, 
     uri,
-    tables
+    zippy
 
 from httpcore import HttpMethod, HttpHeaders
 from posix import onSignal, SIGINT, SIGKILL
@@ -18,7 +19,7 @@ type
     HttpResponse = tuple[
         code: HttpCode,
         content: string,
-        headers: HttpHeaders]
+        headers: seq[(string, string)]]
 
     Settings = ref object
         mimes: MimeDB
@@ -32,7 +33,7 @@ type
         printLogging: bool
 
     TemplateData = ref object
-        htmlContentHeader: HttpHeaders
+        htmlContentHeader: seq[(string, string)]
         pageTitle: string
         canonicalLink: string
         chyron: string
@@ -131,7 +132,7 @@ proc sendTemplatedFile(settings: Settings, req: Request, route: seq[string], dat
         reqTime = cpuTime()
 
     if (req.url.query.len > 0) or (route.len > 1):
-        return (code: Http301, content: "", headers: {"Location": "/" & url}.newHttpHeaders)
+        return (code: Http301, content: "", headers: @[("Location", "/" & url)])
 
     data.canonicalLink = "<link rel=\"canonical\" href=\"http://bhm.sh/" & url & "\">"
     data.content = settings.files[url]
@@ -139,7 +140,7 @@ proc sendTemplatedFile(settings: Settings, req: Request, route: seq[string], dat
     return sendTemplatedFile(data, reqTime)
 
 proc index(settings: Settings, req: Request, data: TemplateData, route: seq[string]): HttpResponse =
-    var indexRedirectResult = (code: Http301, content: "", headers: {"Location": "/"}.newHttpHeaders)
+    var indexRedirectResult = (code: Http301, content: "", headers: @[("Location", "/")])
     if (req.url.query.len > 0) or (route.len > 1):
         return indexRedirectResult
 
@@ -160,7 +161,7 @@ proc sendStaticFile(settings: Settings, req: Request): HttpResponse =
         mimetype = settings.mimes.getMimetype(ext.toLowerAscii)
         file = settings.files[url[1 .. ^1]]
 
-    return (code: Http200, content: file, headers: {"Content-Type": mimetype}.newHttpHeaders)
+    return (code: Http200, content: file, headers: @[("Content-Type", mimetype)])
 
 proc printReqInfo(settings: Settings, req: Request) =
     if settings.printLogging:
@@ -185,7 +186,7 @@ proc logException(settings: Settings) =
 proc serve*(settings: Settings) =
     echo genMsg(settings)
     let 
-        htmlContentHeader = {"Content-Type": "text/html", "Content-Language": "en-US"}.newHttpHeaders
+        htmlContentHeader = @[("Content-Type", "text/html"), ("Content-Language", "en-US")]
         server = newAsyncHttpServer()
 
     proc handleRequest(req: Request): Future[void] {.async.} =
@@ -193,7 +194,8 @@ proc serve*(settings: Settings) =
         var data = TemplateData(pageTitle: sample(titles), chyron: sample(chyrons), quote: sample(quotes), htmlContentHeader: htmlContentHeader)
 
         try:
-            printReqInfo(settings, req)
+            when not defined(release):
+                printReqInfo(settings, req)
             let route = toSeq(req.url.path.split("/"))[1 .. ^1] #always starts with `/`; discard first item
 
             if (route.len < 1) or (route[0] == "") or (route[0] == "index"):
@@ -210,8 +212,15 @@ proc serve*(settings: Settings) =
 
         except:
             logException(settings)
-            res = (code: Http500, content: "", headers: nil)
-        await req.respond(res.code, res.content, res.headers)
+            res = (code: Http500, content: "", headers: @[])
+
+        if res.code == Http200 and req.headers.hasKey("Accept-Encoding") and req.headers["Accept-Encoding"].contains("gzip"):
+            res.headers.add(("Content-Encoding", "gzip"))
+            let content = compress(res.content, BestSpeed)
+            #let uc = uncompress(content)
+            await req.respond(res.code, content, res.headers.newHttpHeaders)
+        else:
+            await req.respond(res.code, res.content, res.headers.newHttpHeaders)
 
     asyncCheck server.serve(settings.port, handleRequest, settings.address, -1, settings.domain)
 
@@ -231,7 +240,7 @@ when isMainModule:
         title: "bhm.sh",
         address: "0.0.0.0",
         name: "bhm.sh",
-        version: "0.5",
+        version: "0.6",
         files: files,
         domain: AF_INET,
         printLogging: false,
