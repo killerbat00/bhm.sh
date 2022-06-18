@@ -12,6 +12,7 @@ import
     tables
 
 from httpcore import HttpMethod, HttpHeaders
+from posix import onSignal, SIGINT, SIGKILL
 
 type 
     HttpResponse = tuple[
@@ -219,6 +220,9 @@ proc handleCtrlC() {.noconv.} =
     quit()
 
 setControlCHook(handleCtrlC)
+onSignal(SIGINT, SIGKILL):
+    echo "\nExiting..."
+    quit()
 
 when isMainModule:
     let settings = Settings(
