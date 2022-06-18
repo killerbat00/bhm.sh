@@ -175,9 +175,6 @@ Current Time: $4
 PID:          $5""" % [settings.name, settings.version, url, $t, $pid]
 
 proc logException(settings: Settings) =
-    if not settings.printLogging:
-        return
-
     let
         e = getCurrentException()
         msg = getCurrentExceptionMsg()
@@ -233,7 +230,7 @@ when isMainModule:
         version: "0.4",
         files: files,
         domain: AF_INET,
-        printLogging: true,
+        printLogging: false,
     )
 
     var addrInfo = getAddrInfo(settings.address, settings.port, settings.domain)
