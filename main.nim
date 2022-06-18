@@ -246,6 +246,9 @@ when isMainModule:
         printLogging: false,
     )
 
+    when not defined(release):
+        settings.printLogging = true
+
     var addrInfo = getAddrInfo(settings.address, settings.port, settings.domain)
     if addrInfo == nil:
         echo "Error: Could not resolve address '" & settings.address & "'."
