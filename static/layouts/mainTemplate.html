@@ -223,8 +223,8 @@
             font-weight: unset;
         }
 
-        nav>a,
-        nav>a:visited {
+        nav>a:not(.activeLink),
+        nav>a:visited:not(.activeLink) {
             color: unset;
             font-weight: unset;
         }
@@ -234,6 +234,20 @@
         nav>a:hover,
         nav>a:visited:hover {
             color: #f80;
+        }
+
+        nav>a:hover,
+        nav>a:visited:hover {
+            color: #f80;
+        }
+
+        .activeLink {
+            color: #f80;
+        }
+
+        .activeLink:hover,
+        .activeLink:visited:hover {
+            color: var(--text-color);
         }
 
         #homeLink:focus,
@@ -393,11 +407,11 @@
             <div style="clear: both"></div>
         </div>
         <nav>
-            <a href="./">Home</a>
-            <a href="./now">Now</a>
+            <a id="homeNavLink" href="./">Home</a>
+            <a id="nowNavLink" href="./now">Now</a>
             <!--<a href="./music">Music I Like</a>-->
-            <a href="./about">About</a>
-            <a href="./resume">Resume</a>
+            <a id="aboutNavLink" href="./about">About</a>
+            <a id="resumeNavLink" href="./resume">Resume</a>
             <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
             <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
         </nav>
@@ -405,7 +419,8 @@
         <p id="genString">{{#generationString}}</p>
     </div>
     <script>
-        let colors = {
+        'use strict';
+        var colors = {
             dark: {
                 bgcolor: "rgb(40, 40, 40)",
                 textcolor: "rgb(230, 230, 230)",
@@ -418,12 +433,20 @@
                 bqcolor: "rgb(238, 238, 238)",
                 aside: "rgb(150, 150, 150)"
             }
-        }
-        let root = document.documentElement;
-        let darkModeBtn = document.getElementById("darkMode");
-        let lightModeBtn = document.getElementById("lightMode");
+        };
 
-        const setDarkMode = () => {
+        var navLinks = {
+            home: document.getElementById("homeNavLink"),
+            now: document.getElementById("nowNavLink"),
+            about: document.getElementById("aboutNavLink"),
+            resume: document.getElementById("resumeNavLink"),
+        };
+
+        var root = document.documentElement;
+        var darkModeBtn = document.getElementById("darkMode");
+        var lightModeBtn = document.getElementById("lightMode");
+
+        function setDarkMode() {
             root.style.setProperty("--bg-color", colors.dark.bgcolor);
             root.style.setProperty("--text-color", colors.dark.textcolor);
             root.style.setProperty("--blockquote-color", colors.dark.bqcolor);
@@ -435,7 +458,7 @@
             localStorage.setItem("darkMode", "enabled");
         }
 
-        const setLightMode = () => {
+        function setLightMode() {
             root.style.setProperty("--bg-color", colors.light.bgcolor);
             root.style.setProperty("--text-color", colors.light.textcolor);
             root.style.setProperty("--blockquote-color", colors.light.bqcolor);
@@ -448,7 +471,7 @@
         }
 
         var isDarkMode = localStorage.getItem("darkMode") === "enabled";
-        let isLightMode = localStorage.getItem("lightMode") === "enabled";
+        var isLightMode = localStorage.getItem("lightMode") === "enabled";
 
         if (isDarkMode) {
             setDarkMode();
@@ -467,14 +490,34 @@
         }
 
         if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", event => {
-                const newColorScheme = event.matches ? "dark": "light";
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", function(event) {
+                var newColorScheme = event.matches ? "dark": "light";
                 if (newColorScheme === "dark") {
                     setDarkMode();
                 } else {
                     setLightMode();
                 }
             });
+        }
+
+        function colorActiveLink(linkEl) {
+            linkEl.classList.add("activeLink");
+        }
+
+        var currentPage = window.location.pathname;
+        switch (currentPage) {
+            case "/":
+                colorActiveLink(navLinks.home);
+                break;
+            case "/now":
+                colorActiveLink(navLinks.now);
+                break;
+            case "/about":
+                colorActiveLink(navLinks.about);
+                break;
+            case "/resume":
+                colorActiveLink(navLinks.resume);
+                break;
         }
     </script>
 </body>
