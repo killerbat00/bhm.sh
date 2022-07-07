@@ -183,7 +183,7 @@ proc logException(settings: Settings) =
     echo repr(e), "\n", repr(msg)
     writeStackTrace()
 
-proc serve*(settings: Settings) =
+proc serve(settings: Settings) =
     echo genMsg(settings)
     let 
         htmlContentHeader = @[("Content-Type", "text/html"), ("Content-Language", "en-US")]
@@ -217,7 +217,6 @@ proc serve*(settings: Settings) =
         if res.code == Http200 and req.headers.hasKey("Accept-Encoding") and req.headers["Accept-Encoding"].contains("gzip"):
             res.headers.add(("Content-Encoding", "gzip"))
             let content = compress(res.content, BestSpeed)
-            #let uc = uncompress(content)
             await req.respond(res.code, content, res.headers.newHttpHeaders)
         else:
             await req.respond(res.code, res.content, res.headers.newHttpHeaders)
