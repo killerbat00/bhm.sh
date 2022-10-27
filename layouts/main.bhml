@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        {{#layouts/styles/main.css}}
+    </style>
+    <noscript>
+        <style>
+            #darkMode,
+            #lightMode {
+                display: none;
+            }
+        </style>
+    </noscript>
+
+    <meta charset="utf-8">
+    <title>Brian Houston Morrow | Senior Software Developer</title>
+    <meta name="description" content="Brian Houston Morrow's home on the internet.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Brian Houston Morrow">
+    {{#canonicalLink}}
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/img/favicon-16x16.png">
+    <link rel="manifest" href="./static/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/img/apple-touch-icon.png">
+    <meta name="theme-color" content="#f80">
+</head>
+
+<body>
+    <div id="content-container">
+        <div id="header">
+            <div id="header-col-1">
+                <h1><a id="homeLink" href="./">{{#pageTitle}}</a></h1>
+                <div id="chyron">{{#chyron}}</div>
+            </div>
+            <div id="header-col-2">
+                <button tabindex="0" type="button" id="darkMode">Dark Mode</button>
+                <button tabindex="0" type="button" id="lightMode">Light Mode</button>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <nav>
+            <a id="homeNavLink" href="./">Home</a>
+            <a id="nowNavLink" href="./now">Now</a>
+            <a id="aboutNavLink" href="./about">About</a>
+            <a id="resumeNavLink" href="./resume">Resume</a>
+            <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
+            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
+        </nav>
+        <div id="content">{{#content}}</div>
+        <p id="genString">{{#generationString}}</p>
+        <p id="genString">Copyright © 2012-2022 Brian Houston Morrow</p>
+    </div>
+    <script>
+        {{#layouts/js/themeswitch.js}}
+    </script>
+</body>
+
+</html>
