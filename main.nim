@@ -45,8 +45,13 @@ type
             quote: string,
             author: string,
             citation: string]
-    
-    Routes = Table[URL, proc]
+
+    RouteHandler = proc(req: Request): Future[void] {.gcsafe.}
+    RouteTable = Table[string, RouteHandler]
+
+proc newRouter: ref RouteTable = 
+    new(result)
+    return result
 
 #-- Compile time behavior
 proc slurpStaticFiles: Table[string, string] =
@@ -107,8 +112,7 @@ proc sendTemplatedFile(data: TemplateData, reqTime: float): HttpResponse =
         timeTaken = (cpuTime() - reqTime) * 1000
         finalContent = rendered.replace("{{#generationString}}", GEN_STRING % $timeTaken.formatFloat(ffDecimal, 5))
 
-    return (code: Http200, content: finalContent,
-            headers: data.htmlContentHeader)
+    return (code: Http200, content: finalContent, headers: data.htmlContentHeader)
 
 proc sendTemplatedFile(settings: Settings, req: Request, route: seq[string], data: TemplateData): HttpResponse =
     let
@@ -172,29 +176,37 @@ proc logException(settings: Settings) =
     echo repr(e), "\n", repr(msg)
     writeStackTrace()
 
-proc serve(settings: Settings) =
+proc serve(settings: Settings, routes: ref RouteTable) =
     echo genMsg(settings)
     let
         htmlContentHeader = @[("Content-Type", "text/html"), ("Content-Language", "en-US")]
         server = newAsyncHttpServer()
 
-    proc handleRequest(req: Request): Future[void] {.async.} =
+    proc handleRequest(req: Request): Future[void] {.async, gcsafe.} =
         var res: HttpResponse
         var data = TemplateData(pageTitle: sample(titles.titles), chyron: sample(titles.chyrons), quote: sample(quotes.quotes), htmlContentHeader: htmlContentHeader)
 
         try:
             when not defined(release):
                 printReqInfo(settings, req)
+            # ignore QSP
+            if req.url.query.len > 0:
+                await req.respond(Http500, "", @[].newHttpHeaders)
+                return
 
             let path = req.url.path[1 .. ^1]
             let route = toSeq(req.url.path.split("/"))[1 .. ^1] #always starts with `/`; discard first item
 
-            if (route.len < 1) or (route[0] == "") or (route[0] == "index") or (route[0] == "index.html"):
-                res = index(settings, req, data, route)
-            elif (path in STATIC_FILES):
+            if (path in STATIC_FILES):
                 res = sendStaticFile(settings, req)
+            elif (route[0] in routes):
+                await routes[route[0]](req)
+                return
             elif (route[0] in DYNAMIC_FILES):
                 res = sendTemplatedFile(settings, req, route, data)
+                await req.respond(res.code, res.content, res.headers.newHttpHeaders)
+                return
+
             else:
                 res = sendTemplatedFile(settings, req, @["404"], data)
 
@@ -237,6 +249,33 @@ when isMainModule:
         echo "Error: Could not resolve address '" & settings.address & "'."
         quit(1)
 
+    proc index(req: Request): Future[void] {.gcsafe.} =
+        let route = toSeq(req.url.path.split("/"))[1 .. ^1] #always starts with `/`; discard first item
+
+        # ignore QSP and .html
+        if (route.len > 1):
+            return req.respond(Http301, "", @[("Location", "/")].newHttpHeaders)
+
+        let 
+            reqTime = cpuTime()
+            htmlContentHeader = @[("Content-Type", "text/html"), ("Content-Language", "en-US")]
+            data = TemplateData(pageTitle: sample(titles.titles), chyron: sample(titles.chyrons), quote: sample(quotes.quotes), htmlContentHeader: htmlContentHeader)
+
+        data.canonicalLink = "<link rel=\"canonical\" href=\"http://bhm.sh/\">"
+        data.content = render(DYNAMIC_FILES["index"], @[
+            ("{{#quoteText}}", data.quote.quote),
+            ("{{#quoteAuthor}}", data.quote.author),
+            ("{{#quoteCitation}}", data.quote.citation)
+        ])
+
+        let response = sendTemplatedFile(data, reqTime)
+        return req.respond(response.code, response.content, response.headers.newHttpHeaders)
+
     randomize()
-    serve(settings)
+    let routes = new(RouteTable)
+    routes[""] = index
+    routes["/"] = index
+    routes["index"] = index
+    routes["index.html"] = index
+    serve(settings, routes)
     runForever()
