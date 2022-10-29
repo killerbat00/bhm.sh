@@ -191,11 +191,13 @@ proc serve(settings: Settings, routes: ref RouteTable) =
             else:
                 # ignore QSP
                 if req.url.query.len > 0:
-                    return req.respond(Http500, "", @[].newHttpHeaders)
+                    await req.respond(Http500, "", @[].newHttpHeaders)
+                    return
 
                 # and requests to pages deeper than the root
                 if route.len > 1:
-                    return req.respond(Http301, "", @[("Location", fmt"/{route[0]}")].newHttpHeaders)
+                    await req.respond(Http301, "", @[("Location", fmt"/{route[0]}")].newHttpHeaders)
+                    return
 
                 let requestedUrl = route[0]
                 let inRouter = (requestedUrl in routes)
@@ -220,14 +222,15 @@ proc serve(settings: Settings, routes: ref RouteTable) =
             res = (code: Http500, content: "", headers: @[])
 
         if res.code != Http200:
-            return req.respond(res.code, res.content, res.headers.newHttpHeaders)
+            await req.respond(res.code, res.content, res.headers.newHttpHeaders)
+            return
 
         if req.headers.hasKey("Accept-Encoding") and req.headers["Accept-Encoding"].contains("gzip"):
             res.headers.add(("Content-Encoding", "gzip"))
             let content = compress(res.content, BestSpeed)
-            return req.respond(res.code, content, res.headers.newHttpHeaders)
+            await req.respond(res.code, content, res.headers.newHttpHeaders)
         else:
-            return req.respond(res.code, res.content, res.headers.newHttpHeaders)
+            await req.respond(res.code, res.content, res.headers.newHttpHeaders)
 
     asyncCheck server.serve(settings.port, handleRequest, settings.address, -1, settings.domain)
 
