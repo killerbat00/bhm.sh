@@ -14,13 +14,13 @@ if [[ "${MODE}" == "-t" ]]; then
 fi
 
 if [[ "${MODE,,}" == "dev" ]]; then
-    if [[ "$DRY_RUN" == "" ]]; then
+    if [[ $DRY_RUN == 0 ]]; then
 	    nim c -o:$DEV_OUTPUT_FILE $RUN $SRC_FILE
     else
         echo "nim c -o:${DEV_OUTPUT_FILE} ${RUN} ${SRC_FILE}"
     fi
 elif [[ "${MODE,,}" == "rls" ]]; then
-    if [[ "$DRY_RUN" == "" ]]; then
+    if [[ $DRY_RUN == 0 ]]; then
 	    nim c -o:$RLS_OUTPUT_FILE -d:release --opt:speed $RUN $SRC_FILE
     else
         echo "nim c -o:${RLS_OUTPUT_FILE} -d:release --opt:speed ${RUN} ${SRC_FILE}"
