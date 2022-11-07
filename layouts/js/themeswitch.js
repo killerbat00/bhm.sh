@@ -87,15 +87,20 @@ function colorActiveLink(linkEl) {
 var currentPage = window.location.pathname;
 switch (currentPage) {
     case "/":
+    case "/index":
+    case "/index.html":
         colorActiveLink(navLinks.home);
         break;
     case "/now":
+    case "/now.html":
         colorActiveLink(navLinks.now);
         break;
     case "/about":
+    case "/about.html":
         colorActiveLink(navLinks.about);
         break;
     case "/resume":
+    case "/resume.html":
         colorActiveLink(navLinks.resume);
         break;
 }

@@ -11,7 +11,9 @@ const titles* = [
     "is the place to be",
     "personal digital destination",
     "home for wayward dogs",
-    "home of horrors (NOT scary)"
+    "home of horrors (NOT scary)",
+    "dreamscape",
+    "cheeseburger in paradise",
 ]
 
 const chyrons* = [
@@ -22,7 +24,5 @@ const chyrons* = [
     "dog hair now included!",
     "enjoy your stay!",
     "FREE bits AND bytes!",
-    "wow, what a great audience"
+    "wow, what a great audience",
 ]
-
-export titles, chyrons
