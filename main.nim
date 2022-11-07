@@ -29,7 +29,6 @@ type
     Settings = ref object
         mimes: MimeDB
         port: Port
-        title: string
         address: string
         name: string
         version: string
@@ -117,6 +116,13 @@ proc addRoute(rt: ref RouteTable, route: string, handler: RouteHandler): void =
     else:
         rt[route] = handler
 
+proc addRoute(rt: ref RouteTable, routes: seq[string], handler: RouteHandler): void =
+    if rt == nil:
+        return
+
+    for route in routes:
+        rt.addRoute(route, handler)
+
 proc sendStaticFile(req: Request, staticFiles: Table[string, string], mimes: MimeDB): HttpResponse {.gcsafe.} =
     let
         url = req.url.path[1 .. ^1]
@@ -127,7 +133,7 @@ proc sendStaticFile(req: Request, staticFiles: Table[string, string], mimes: Mim
     # .js.map files incorrectly map to x-navimap. fix it.
     if (mimetype == "application/x-navimap"):
         mimetype = "application/json"
-    
+
     return (code: Http200, content: file, headers: @[("Content-Type", mimetype)])
 
 proc sendDynamicFile(req: Request, ctx: RequestContext, layout: string): HttpResponse {.gcsafe.} =
@@ -152,7 +158,7 @@ proc greetings(settings: Settings): void =
     echo fmt"""{settings.name} v{settings.version}
 Address:      {url}
 Current Time: {$t}
-PID:          {$pid}""" 
+PID:          {$pid}"""
 
 proc printInfo(req: Request) =
     when not defined(release):
@@ -166,13 +172,13 @@ proc logException(settings: Settings) =
     writeStackTrace()
 
 proc sendResponse(req: Request, res: HttpResponse) {.gcsafe, async.} =
-        if req.headers.hasKey("Accept-Encoding") and req.headers["Accept-Encoding"].contains("gzip"):
-            let h = res.headers.newHttpHeaders
-            h.add("Content-Encoding", "gzip")
-            let content = compress(res.content, BestSpeed)
-            await req.respond(res.code, content, h)
-        else:
-            await req.respond(res.code, res.content, res.headers.newHttpHeaders)
+    if req.headers.hasKey("Accept-Encoding") and req.headers["Accept-Encoding"].contains("gzip"):
+        let h = res.headers.newHttpHeaders
+        h.add("Content-Encoding", "gzip")
+        let content = compress(res.content, BestSpeed)
+        await req.respond(res.code, content, h)
+    else:
+        await req.respond(res.code, res.content, res.headers.newHttpHeaders)
 
 const STATIC_FILES: Table[string, string] = slurpStaticFiles()
 const LAYOUTS = slurpLayouts()
@@ -245,8 +251,7 @@ setControlCHook(handleCtrlC)
 when isMainModule:
     let settings = Settings(
         mimes: newMimetypes(),
-        port: Port(1992),   
-        title: "bhm.sh",
+        port: Port(1992),
         address: "0.0.0.0",
         name: "bhm.sh",
         version: "2022.11.07",
@@ -269,9 +274,6 @@ when isMainModule:
 
     randomize()
     let routes = new(RouteTable)
-    routes.addRoute("", index)
-    routes.addRoute("/", index)
-    routes.addRoute("index", index)
-    routes.addRoute("index.html", index)
+    routes.addRoute(@["", "/", "index", "index.html"], index)
     serve(settings, routes)
     runForever()
