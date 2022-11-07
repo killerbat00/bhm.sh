@@ -1,5 +1,5 @@
 /* variables */
-:root {
+html {
     --body-font-size: 16px;
     --small-body-font-size: 14px;
 
@@ -10,7 +10,7 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    :root {
+    html {
         --bg-color: rgb(40, 40, 40);
         --text-color: rgb(230, 230, 230);
         --blockquote-color: rgb(100, 100, 100);
