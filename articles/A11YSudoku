@@ -1,0 +1,19 @@
+Making an accessible sudoku game
+
+Color challenge - different active states
+- Each cell has several different states it can be in.
+
+Navigation challenge
+- aria-disabled vs disabled
+- sighted users can see disabled cells and know they are pre-populated with a value. so disabled=true works for these pre-populated cells.
+- that is not true for non-sighted users. They still need these cells to be accessible in order to discover that information about their state.
+- BUT, we want to accomodate both, and we can do so with some CSS:
+...blah blah blah...
+
+- Keyboard-based navigation vs Mouse-based navigation.
+
+- Mobile A11Y vs Browser/Desktop A11Y
+
+- Link to - Building a sudoku UI and game generator
+
+
