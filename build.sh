@@ -1,39 +1,82 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+magenta='\e[1;35m'
+red='\e[1;31m'
+white='\e[0;37m'
+
+shopt -s extglob
+
+if [[ $EUID -eq 0 ]]; then
+    echo "no root, pls."
+    exit 1
+fi
 
 SRC_FILE=main.nim
 RLS_OUTPUT_FILE=bin/bhm.sh
 DEV_OUTPUT_FILE="${RLS_OUTPUT_FILE}"-DEV
-DRY_RUN=0
-MODE=$1
-RUN=$2
 
-if [[ "${MODE}" == "-t" ]]; then
-    DRY_RUN=1
-    MODE=$2
-    RUN=$3
-fi
-
-if [[ "${MODE,,}" == "dev" ]]; then
-    if [[ $DRY_RUN == 0 ]]; then
-	    nim c -o:$DEV_OUTPUT_FILE $RUN $SRC_FILE
-    else
+dry_run() {
+    local MODE=$1
+    local RUN=$2
+    if [[ "${MODE,,}" == "dev" ]]; then
         echo "nim c -o:${DEV_OUTPUT_FILE} ${RUN} ${SRC_FILE}"
-    fi
-elif [[ "${MODE,,}" == "rls" ]]; then
-    if [[ $DRY_RUN == 0 ]]; then
-	    nim c -o:$RLS_OUTPUT_FILE -d:release --opt:speed $RUN $SRC_FILE
-    else
+    elif [[ "${MODE,,}" == "rls" ]]; then
         echo "nim c -o:${RLS_OUTPUT_FILE} -d:release --opt:speed ${RUN} ${SRC_FILE}"
+    else
+        echo -e "$red Include one of {dev|rls} $white"
+        usage
+        exit 1
     fi
-else
-	echo "Usage:"
-	echo "  ./build.sh [-t] {dev|rls} [-r]"
-	echo ""
-	echo "  Options:"
-    echo "    -t    - dry run, echos commands"
-    echo "    mode:"
-	echo "      dev - build development version"
-	echo "      rls - build release version"
-	echo "    -r    - run after building"
-fi
+}
 
+wet_run() {
+    local MODE=$1
+    local RUN=$2
+    if [[ "${MODE,,}" == "dev" ]]; then
+        nim c -o:$DEV_OUTPUT_FILE $RUN $SRC_FILE
+    elif [[ "${MODE,,}" == "rls" ]]; then
+        nim c -o:$RLS_OUTPUT_FILE -d:release --opt:speed $RUN $SRC_FILE
+    else
+        echo -e "$red Include one of {dev|rls} $white"
+        usage
+        exit 1
+    fi
+}
+
+usage() {
+    local program_name
+    program_name=${0##*/}
+    cat <<EOF
+Usage: $program_name [-t] {dev|rls} [-r]
+Options:
+    -t      dry run, echos commands without executing
+    dev     build development version
+    rls     build release version
+    -r      run after building
+EOF
+}
+
+main() {
+    case "$1" in
+        ''|-h|--help)
+            usage
+            exit 0
+            ;;
+        -t)
+            dry_run $2 $3
+            exit 0
+            ;;
+        dev|rls|DEV|RLS)
+            wet_run $1 $2
+            exit 0
+            ;;
+        *)
+            echo -e "$red computer says no $white"
+            usage
+            exit 1
+            ;;
+    esac
+
+}
+
+main "$@"
