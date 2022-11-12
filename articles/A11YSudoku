@@ -70,6 +70,7 @@ Layout:
     - themeing via CSS variables
     - themeing via React vs JS
       (flash of default theme article link)
+    - woah! possible new method? https://css-tricks.com/easy-dark-mode-and-multiple-color-themes-in-react/
 - Try it out!
   - Link to live example
   - Link to the code
