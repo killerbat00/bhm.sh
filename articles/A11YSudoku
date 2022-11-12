@@ -76,3 +76,26 @@ Layout:
   - Link to the code
 - Up next
   - Link to post about sudoku generator.
+
+
+
+Notes on fixing themeing flash:
+- initially started by using CSS variables and respecting the media query.
+- then added support for dynamic switching via buttons
+- BUG: this wasn't respected if you came back; only respected browser default (and default default is light: TODO - what is the browser default if not chosen by user?)
+- FIX: Store the user's last choice/default in local storage. If the user never changes; we'll just go with the default (which should be right) if they do change; we'll load from local storage.
+- BUG: using useEffect without an empty dependency array meant problems. knew we needed useEffect but didn't know it would execute every time without empty deps array.
+- FIX: Use proper dependency array.
+- BUG: if dark mode is in local storage, page still flashes in light mode before switching.
+  - - why? because light mode is the default in the CSS and the dark mode switch doesn't happen until that react
+    component starts executing, which is after the DOM has been parsed and displayed.
+    One possible fix is to move the theme switching outside of react and to a script in the head element/somewhere
+    on the page where it's likely to run before the DOM is parsed and displayed.
+- BUG: requires manually knowing about & changing every themeing value in javascript. these are duplicated from CSS.
+  - - i really didn't like this and it's a hold over from a method I developed for my own personal
+    website. It requires duplicating things and is fragile to changes.
+- - discovery: using a custom data-theme on the root element.
+  - bug for this app: can't easily access the 'root' element. our root element is actually the body element
+    due to styling. so even after switching to this we still have the flash of default theme problem.
+    - fix for that? update our styles so that everything is contained within something that is react-rendered.
+      - don't add styles to body/root/etc. that we don't directly control via react.
