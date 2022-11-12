@@ -2,6 +2,9 @@ Making an accessible sudoku game
 
 Color challenge - different active states
 - Each cell has several different states it can be in.
+- Wanted colors that were visible with color blindness/etc.
+- Finally stumbled on a huge/brightness pattern that worked for different
+  states.
 
 Navigation challenge
 - aria-disabled vs disabled
@@ -16,4 +19,59 @@ Navigation challenge
 
 - Link to - Building a sudoku UI and game generator
 
+Components:
+- The Game board
+- Individual Cells
+- The ColorPicker, a fun diversion.
+- The ThemeSwitcher
 
+Layout:
+- Intro - started out as an interview challenge; write a sudoku board in React.
+  Was given a 2 dimensional array of numbers for the initial board state and a react environment on repl.it and that was it.
+    - Really enjoy sudoku & number puzzles so was stoked (should out Cracking the Cryptic)
+    - Overall, went okay - was able to come up with the expected solution in the given timeframe (~45min).
+    - Key insights:
+      - The board itself should hold the state and push that down to individual Cells which are responsible for displaying
+        values and accepting changes.
+      - When a cell value changes, we can check for duplicates immediately, or wait until all cell values are filled.
+      - In either case, an individual cell doesn't necessarily know about its neighbors (it could if we passed the entire
+        board state to each cell). The board does know about its entire state as well as how to render a cell.
+        So, when a cell's value is updated, the cell needs to:
+            - Validate the value; only numbers 1-9.
+            - Set the value in the cell's own state.
+            - Tell the board that a specific cell's value has been updated, and what the update is.
+      - This inversion of control is crucial, the board passes a callback to the cell and the call calls
+        that with its new value when the user enters a new value.
+        Now, the board can use that info to update its own state and, as part of that, we can
+        check for duplicates with each entry (which is more user friendly than requiring the user to enter every number - hard mode!)
+      - When checking for duplicates, we only need to check in the same row, column, and peer square.
+      - For a 2d array, this is pretty easy, row is the same array, column is the same index in the overall array and peer square is ??? add this
+    - Things that went wrong:
+        - Styling wasn't a requirement, but mine was off for a good portion of the challenge.
+          I had chosen to use a container div with `display: flex` and text input elements as cells.
+          I constrained the size of each cell to a 48x48px square and the container div to a width of 48*9+48*9
+          but cells were still appearing in a single row.
+          The fix?: add fix.
+          Also didn't style nice fancy thicker borders for the peer groups.
+        - Calculating duplicates:
+          - My approach to calculating duplicates in a peer group was rwong. I was thinking of the formulas for a 1d array and didn't properly account for the 2d array.
+          - Additionally, while walkking my dog Einstein that night, I realized that in checking the row & column of a cell, you've already checked 4 of the 8 cells in the same peer group.
+
+- Expanding on the challenge:
+  - Writing my own, improved sudoku board.
+  - Building a basic sudoku board.
+  - Adding interactivity
+  - Usability improvements (color & responsiveness)
+    - color
+    - keyboard-based navigation
+    - flexbox vs grid
+  - Themeing
+    - dark & light mode theme
+    - themeing via CSS variables
+    - themeing via React vs JS
+      (flash of default theme article link)
+- Try it out!
+  - Link to live example
+  - Link to the code
+- Up next
+  - Link to post about sudoku generator.

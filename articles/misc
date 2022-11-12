@@ -1,0 +1,7 @@
+Themeing
+- how to theme in React (using useEffect and window.matchMedia)
+- a possibly better way to theme outside of React in order to 
+  prevent a flash of unstyled content.
+
+- dark/light mode using CSS variables
+- 
