@@ -1,0 +1,5 @@
+2022-11-12@23:01:23.000-05:00
+The vim sudo trick allows you to write to file that requires root permissions for writing.
+You can enter `w !sudo tee %` to write the actual without having to close, lose changes, and reopen.
+Additionally, you can add the following to your `.vimrc` to provide a shorter and easier to remember alternative:
+`cmap w!! w !sudo tee > /dev/null %`
