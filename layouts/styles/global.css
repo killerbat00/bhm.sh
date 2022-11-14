@@ -25,7 +25,6 @@ html {
 }
 
 /* global styles 
-
 and typography */
 [data-theme='dark'] {
     --bg-color: var(--bg-color-dark);
