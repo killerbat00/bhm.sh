@@ -68,7 +68,7 @@ proc slurpStaticFiles: Table[string, string] =
 proc slurpLayouts: Table[string, string] =
     result = initTable[string, string]()
     var layouts = initTable[string, string]()
-    var included_content = initTable[string, string]()
+    var includedContent = initTable[string, string]()
 
     # first, find all directories in the layouts dir
     # and read the files they contain; these can be
@@ -77,20 +77,20 @@ proc slurpLayouts: Table[string, string] =
         for entry2 in walkDirRec(entry, {pcDir, pcFile}):
             if dirExists(entry2):
                 continue
-            included_content[entry2] = staticRead(entry2)
+            includedContent[entry2] = staticRead(entry2)
 
     # then, find all the actual layouts.
     for entry in walkDirRec("layouts", {pcFile}):
-        if included_content.hasKey(entry):
+        if includedContent.hasKey(entry):
             continue
         layouts[entry] = staticRead(entry)
 
     # finally, embed content in the layout files
     # if the layout embeds that content.
-    for layout, layout_content in layouts.mpairs():
-        result[layout] = layout_content
-        for incl_file in included_content.keys():
-            result[layout] = result[layout].replace("{{#" & incl_file & "}}", included_content[incl_file])
+    for layout, layoutContent in layouts.mpairs():
+        result[layout] = layoutContent
+        for inclFile in includedContent.keys():
+            result[layout] = result[layout].replace("{{#" & inclFile & "}}", includedContent[incl_file])
 
 # Read all dynamic files from the dynamic/ dir.
 # The content of these files can be dynamically
