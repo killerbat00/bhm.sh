@@ -3,19 +3,25 @@ html {
     --body-font-size: 16px;
     --small-body-font-size: 14px;
 
-    --bg-color: rgb(255, 255, 255);
-    --text-color: rgb(0, 0, 0);
-    --blockquote-color: rgb(238, 238, 238);
-    --text-color-aside: rgb(150, 150, 150);
-}
+    --bg-color-light: #fff9f4;
+    --bg-color-dark: #1c1615;
+    --bg-color: var(--bg-color-light);
 
-@media screen and (prefers-color-scheme: dark) {
-    html {
-        --bg-color: rgb(40, 40, 40);
-        --text-color: rgb(230, 230, 230);
-        --blockquote-color: rgb(100, 100, 100);
-        --text-color-aside: rgb(120, 120, 120);
-    }
+    --text-color-light: var(--bg-color-dark);
+    --text-color-dark: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+
+    --blockquote-color-light: #fbbaa7;
+    --blockquote-color-dark: #a72f10;
+    --blockquote-color: var(--blockquote-color-light);
+
+    --text-color-aside-light: #737373;
+    --text-color-aside-dark: #808080;
+    --text-color-aside: var(--text-color-aside-light);
+
+    --highlight-color-light: #b25d00;
+    --highlight-color-dark: #b96d3a;
+    --highlight-color: var(--highlight-color-light);
 }
 
 /*reset */
@@ -51,8 +57,6 @@ html {
     overflow-y: scroll;
     font-size: var(--body-font-size);
     line-height: 1.5em;
-    background: var(--bg-color);
-    color: var(--text-color);
 }
 
 @media screen and (max-width: 975px) {
@@ -100,6 +104,19 @@ h4 {
 }
 
 /* global styles */
+[data-theme='dark'] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --blockquote-color: var(--blockquote-color-dark);
+    --text-color-aside: var(--text-color-aside-dark);
+    --highlight-color: var(--highlight-color-dark);
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
 .emphasize {
     font-size: 1.25rem;
     line-height: 2rem;
@@ -118,7 +135,7 @@ p {
 }
 
 a {
-    color: #f80;
+    color: var(--highlight-color);
     text-decoration: underline;
     font-weight: bolder;
 }
@@ -131,7 +148,7 @@ a:visited:hover {
 a:focus,
 a:focus-visible,
 a:focus-within {
-    border: 2px solid #f80;
+    border: 2px solid var(--highlight-color);
     border-radius: 5px;
 }
 
@@ -180,7 +197,7 @@ button {
 button:focus,
 button:focus-visible,
 button:focus-within {
-    border: 2px solid #f80;
+    border: 2px solid var(--highlight-color);
     border-radius: 5px;
 }
 
@@ -198,7 +215,8 @@ ul {
 }
 
 #header {
-    margin: 1.25rem 0 0.5rem -5rem;
+    padding: 1rem 0 0.5rem;
+    margin-left: -5rem;
 }
 
 #header-col-1 {
@@ -238,17 +256,9 @@ nav>a:visited:not(.activeLink) {
 #homeLink:hover,
 #homeLink:visited:hover,
 nav>a:hover,
-nav>a:visited:hover {
-    color: #f80;
-}
-
-nav>a:hover,
-nav>a:visited:hover {
-    color: #f80;
-}
-
+nav>a:visited:hover,
 .activeLink {
-    color: #f80;
+    color: var(--highlight-color);
 }
 
 .activeLink:hover,
@@ -359,7 +369,7 @@ blockquote p {
     padding: .75rem;
     background: var(--blockquote-color);
     border-radius: 5px;
-    border-left-color: #f80;
+    border-left-color: var(--highlight-color);
     border-left-style: solid;
     border-left-width: 5px;
 }

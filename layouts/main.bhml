@@ -11,6 +11,15 @@
             #lightMode {
                 display: none;
             }
+
+            @media screen and (prefers-color-scheme: dark) {
+                html {
+                    --bg-color: var(--bg-color-dark);
+                    --text-color: var(--text-color-dark);
+                    --blockquote-color: var(--blockquote-color-dark);
+                    --text-color-aside: var(--text-color-aside-dark);
+                }
+            }
         </style>
     </noscript>
 

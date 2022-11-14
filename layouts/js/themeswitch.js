@@ -1,86 +1,50 @@
 'use strict';
 
-var colors = {
-    dark: {
-        bgcolor: "rgb(40, 40, 40)",
-        textcolor: "rgb(230, 230, 230)",
-        bqcolor: "rgb(100, 100, 100)",
-        aside: "rgb(120, 120, 120)"
-    },
-    light: {
-        bgcolor: "rgb(255, 255, 255)",
-        textcolor: "rgb(0, 0, 0)",
-        bqcolor: "rgb(238, 238, 238)",
-        aside: "rgb(150, 150, 150)"
-    }
-};
-
 var navLinks = {
     home: document.getElementById("homeNavLink"),
     now: document.getElementById("nowNavLink"),
     about: document.getElementById("aboutNavLink"),
     resume: document.getElementById("resumeNavLink"),
+    darkModeBtn: document.getElementById("darkMode"),
+    lightModeBtn: document.getElementById("lightMode"),
 };
 
-var root = document.documentElement;
-var darkModeBtn = document.getElementById("darkMode");
-var lightModeBtn = document.getElementById("lightMode");
+var root = document.body;
+var setTheme = function (newTheme) {
+    if (newTheme === "dark" || newTheme === "light") {
+        root.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+    }
 
-function setDarkMode() {
-    root.style.setProperty("--bg-color", colors.dark.bgcolor);
-    root.style.setProperty("--text-color", colors.dark.textcolor);
-    root.style.setProperty("--blockquote-color", colors.dark.bqcolor);
-    root.style.setProperty("--text-color-aside", colors.dark.aside);
-    darkModeBtn.style.display = "none";
-    lightModeBtn.style.display = "block";
-    lightModeBtn.style.margin = "0 auto";
-    localStorage.removeItem("lightMode");
-    localStorage.setItem("darkMode", "enabled");
+    if (newTheme === "dark") {
+        navLinks.darkModeBtn.style.display = "none";
+        navLinks.lightModeBtn.style.display = "block";
+        navLinks.lightModeBtn.style.margin = "0 auto";
+    } else if (newTheme === "light") {
+        navLinks.lightModeBtn.style.display = "none";
+        navLinks.darkModeBtn.style.display = "block";
+        navLinks.darkModeBtn.style.margin = "0 auto";
+    }
 }
 
-function setLightMode() {
-    root.style.setProperty("--bg-color", colors.light.bgcolor);
-    root.style.setProperty("--text-color", colors.light.textcolor);
-    root.style.setProperty("--blockquote-color", colors.light.bqcolor);
-    root.style.setProperty("--text-color-aside", colors.light.aside);
-    lightModeBtn.style.display = "none";
-    darkModeBtn.style.display = "block";
-    darkModeBtn.style.margin = "0 auto";
-    localStorage.removeItem("darkMode");
-    localStorage.setItem("lightMode", "enabled");
-}
+navLinks.darkModeBtn.addEventListener("click", function () {
+    setTheme("dark");
+});
 
-var isDarkMode = localStorage.getItem("darkMode") === "enabled";
-var isLightMode = localStorage.getItem("lightMode") === "enabled";
+navLinks.lightModeBtn.addEventListener("click", function () {
+    setTheme("light");
+})
 
-if (isDarkMode) {
-    setDarkMode();
-}
+var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+var storedTheme = localStorage.getItem("theme");
+setTheme(storedTheme === null ? prefersDark ? "dark" : "light" : storedTheme);
 
-if (isLightMode) {
-    setLightMode();
-}
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
+    var newTheme = event.matches ? "dark" : "light";
+    setTheme(newTheme);
+});
 
-if (darkModeBtn) {
-    darkModeBtn.addEventListener("click", setDarkMode);
-}
-
-if (lightModeBtn) {
-    lightModeBtn.addEventListener("click", setLightMode);
-}
-
-if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", function (event) {
-        var newColorScheme = event.matches ? "dark" : "light";
-        if (newColorScheme === "dark") {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-    });
-}
-
-function colorActiveLink(linkEl) {
+var colorLink = (linkEl) => {
     linkEl.classList.add("activeLink");
 }
 
@@ -89,18 +53,18 @@ switch (currentPage) {
     case "/":
     case "/index":
     case "/index.html":
-        colorActiveLink(navLinks.home);
+        colorLink(navLinks.home);
         break;
     case "/now":
     case "/now.html":
-        colorActiveLink(navLinks.now);
+        colorLink(navLinks.now);
         break;
     case "/about":
     case "/about.html":
-        colorActiveLink(navLinks.about);
+        colorLink(navLinks.about);
         break;
     case "/resume":
     case "/resume.html":
-        colorActiveLink(navLinks.resume);
+        colorLink(navLinks.resume);
         break;
 }
