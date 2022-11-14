@@ -24,26 +24,6 @@ html {
     --highlight-color: var(--highlight-color-light);
 }
 
-/*reset */
-*:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
-    all: unset;
-    display: revert;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-a,
-button {
-    cursor: revert;
-}
-
-img {
-    max-width: 100%;
-}
 
 /* typography */
 @font-face {

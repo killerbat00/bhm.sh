@@ -3,6 +3,7 @@
 
 <head>
     <style>
+        {{#layouts/styles/reset.css}}
         {{#layouts/styles/main.css}}
     </style>
     <noscript>
@@ -18,6 +19,7 @@
                     --text-color: var(--text-color-dark);
                     --blockquote-color: var(--blockquote-color-dark);
                     --text-color-aside: var(--text-color-aside-dark);
+                    --highlight-color: var(--highlight-color-dark);
                 }
             }
         </style>
