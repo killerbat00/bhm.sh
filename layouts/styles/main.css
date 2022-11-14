@@ -164,21 +164,3 @@ div>p:first-child {
     margin-top: 5%;
     text-align: center;
 }
-
-/* index styles */
-blockquote p {
-    padding: .75rem;
-    background: var(--blockquote-color);
-    border-radius: 5px;
-    border-left-color: var(--highlight-color);
-    border-left-style: solid;
-    border-left-width: 5px;
-}
-
-blockquote p::before {
-    content: '\201C';
-}
-
-blockquote p::after {
-    content: '\201D';
-}

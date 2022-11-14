@@ -1,16 +1,34 @@
 <style>
+    /* index styles */
+    blockquote p {
+        padding: .75rem;
+        background: var(--blockquote-color);
+        border-radius: 5px;
+        border-left-color: var(--highlight-color);
+        border-left-style: solid;
+        border-left-width: 5px;
+    }
+
+    blockquote p::before {
+        content: '\201C';
+    }
+
+    blockquote p::after {
+        content: '\201D';
+    }
+
+    cite {
+        margin-left: 8px;
+    }
 </style>
-<div id="bio">
-    <p>Hi! Welcome to my home on the internet!</p>
-    <p>I'm a full stack software developer based in Madison, WI with 8+ years of experience (+ lots of time spent with
-        fun side projects like this website!). I love making software; it improves my life daily and I'm convinced it
-        can do the same for others. I'm eager to make that happen!
-    </p>
-    <p>Interested in working together? Read (a lot) more <a href="./about">about</a> me, see my profession experience on
-        my <a href="./resume">resume</a>, my current projects on <a target="_blank"
-            href="https://github.com/killerbat00">my github</a>, or <a href="mailto:bhm@brianmorrow.net">email me</a>!
-    </p>
-</div>
+<p style="margin-top: 0;">Hi! Welcome to my home on the internet!</p>
+<p>I'm a full stack software developer based in Madison, WI with 8+ years of experience (+ lots of time spent with
+    fun side projects like this website!). I love making software; it improves my life daily and I'm convinced it
+    can do the same for others. I'm eager to make that happen!
+</p>
+<p>Interested in working together? Read (a lot) more <a href="./about">about</a> me, see my profession experience on
+    my <a href="./resume">resume</a>, my current projects on <a target="_blank" href="https://github.com/killerbat00">my
+        github</a>, or <a href="mailto:bhm@brianmorrow.net">email me</a>!</p>
 <p class="levelThree">A quote that I like (or liked at some point)</p>
 <small class="aside">who am i kidding? i program all of these to be included! i like 'em all though they do vary in
     sincerity</small>
@@ -22,7 +40,7 @@
 </figure>
 <br>
 <p class="levelThree">Other websites I like</p>
-<ul>
+<ul style="margin-top: 0;">
     <li><a href="https://j3s.sh">j3s.sh</a></li>
     <li><a href="https://justine.lol">justine.lol</a></li>
     <li><a href="https://sive.rs/">sive.rs</a></li>

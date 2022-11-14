@@ -136,10 +136,6 @@ a:focus-within {
     border-radius: 5px;
 }
 
-cite {
-    margin-left: 8px;
-}
-
 .aside {
     color: var(--text-color-aside);
 }
