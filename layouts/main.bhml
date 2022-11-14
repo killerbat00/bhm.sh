@@ -4,6 +4,7 @@
 <head>
     <style>
         {{#layouts/styles/reset.css}}
+        {{#layouts/styles/global.css}}
         {{#layouts/styles/main.css}}
     </style>
     <noscript>

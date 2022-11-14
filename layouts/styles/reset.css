@@ -18,3 +18,7 @@ button {
 img {
     max-width: 100%;
 }
+
+button {
+    all: revert;
+}
