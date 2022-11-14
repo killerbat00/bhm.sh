@@ -15,7 +15,7 @@
 }
 
 #header {
-    padding: 1rem 0 0.5rem;
+    padding: .5rem 0 0.5rem;
     margin-left: -5rem;
 }
 
@@ -72,8 +72,10 @@ nav>a:visited:hover,
     margin-left: -2px;
 }
 
-#header>h1 {
+#header>div>h1 {
     font-family: 'volkhovregular';
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #lightMode {

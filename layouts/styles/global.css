@@ -90,7 +90,8 @@ h2 {
     line-height: 1.75rem;
 }
 
-h3 {
+h3,
+.levelThree {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
 
