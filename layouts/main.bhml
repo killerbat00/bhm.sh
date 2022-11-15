@@ -57,12 +57,12 @@
             <a id="nowNavLink" href="./now">Now</a>
             <a id="aboutNavLink" href="./about">About</a>
             <a id="resumeNavLink" href="./resume">Resume</a>
-            <a target="_blank" href="https://www.github.com/killerbat00">GitHub<small> -></small></a>
-            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn<small> -></small></a>
+            <a target="_blank" href="https://www.github.com/killerbat00">GitHub↗</a>
+            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/">LinkedIn↗</a>
         </nav>
         <div id="content">{{#content}}</div>
         <p id="genString">{{#generationString}}</p>
-        <p id="genString">Copyright © 2012-2022 Brian Houston Morrow</p>
+        <p id="genString" style="margin-top: 0">Copyright © 2012-2022 Brian Houston Morrow</p>
     </div>
     <script>
         {{#layouts/js/themeswitch.js}}

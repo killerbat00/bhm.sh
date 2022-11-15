@@ -19,7 +19,7 @@ html {
     --text-color-aside-dark: #808080;
     --text-color-aside: var(--text-color-aside-light);
 
-    --highlight-color-light: #b25d00;
+    --highlight-color-light: #d73705;
     --highlight-color-dark: #b96d3a;
     --highlight-color: var(--highlight-color-light);
 }
@@ -32,13 +32,6 @@ and typography */
     --blockquote-color: var(--blockquote-color-dark);
     --text-color-aside: var(--text-color-aside-dark);
     --highlight-color: var(--highlight-color-dark);
-}
-
-@font-face {
-    font-family: 'volkhovregular';
-    src: url('./static/fonts/volkhov-regular-webfont.woff2') format('woff2'), url('./static/fonts/volkhov-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }
 
 ::selection {
@@ -72,8 +65,8 @@ h6 {
     font-weight: normal;
 }
 
-h1,
-.header {
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
 
