@@ -9,6 +9,7 @@
 [X] - simplify layout/templating.
 [X] - fix google search console issues (ugh).
 [X] - better mobile layout/nav links
+[X] - Better accessibility (contrast and navigation/content).
 [ ] - layout/plans for Music I Like (bootleg videos? obscure Youtube links? Ranked lists? Reviews?)
 [ ] - - How about a "Things I Like" instead?
 [ ] - - einstein-based rating system
@@ -16,4 +17,3 @@
 [ ] - add links to previous versions of the site; host previous versions
 [ ] - add sqlite logging for interesting things.
 [ ] - Einstein logo
-[ ] - Better accessibility (contrast and navigation/content).
