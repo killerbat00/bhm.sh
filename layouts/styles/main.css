@@ -32,6 +32,13 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    #header {
+        grid-template-columns: unset;
+        grid-auto-flow: row;
+    }
+}
+
 #homeLink,
 #homeLink:visited {
     color: unset;
@@ -69,6 +76,11 @@ nav>a:visited:hover,
     margin-bottom: 0;
 }
 
+#lightMode,
+#darkMode {
+    margin-bottom: 0.75rem !important;
+}
+
 #lightMode {
     display: none;
 }
@@ -76,6 +88,16 @@ nav>a:visited:hover,
 #darkMode {
     display: block;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+    #lightMode {
+        margin-top: 0.75rem !important;
+    }
+
+    #darkMode {
+        margin-top: 0.75rem !important;
+    }
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -97,7 +119,7 @@ nav {
     grid-auto-flow: column;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
     nav {
         line-height: 2rem;
         display: block;
