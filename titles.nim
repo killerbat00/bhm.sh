@@ -25,4 +25,5 @@ const chyrons* = [
     "enjoy your stay!",
     "FREE bits AND bytes!",
     "wow, what a great audience",
+    "startup mode activated",
 ]
