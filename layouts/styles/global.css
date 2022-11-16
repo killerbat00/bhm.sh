@@ -163,9 +163,10 @@ button {
     min-width: 44px;
     min-height: 44px;
     padding: 8px;
-    background: var(--text-color);
+    background: var(--highlight-color);
     color: var(--bg-color);
     border-radius: 5px;
+    border: 4px solid var(--blockquote-color);
 }
 
 @media screen and (max-width: 975px) {
@@ -184,6 +185,9 @@ button:focus-within {
 }
 
 @media screen and (max-width: 500px) {
+    button {
+        border: 2px solid var(--blockquote-color)
+    }
 
     button:focus,
     button:focus-visible,
