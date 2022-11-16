@@ -1,0 +1,41 @@
+Idea:
+Use Open.AI's Whisper model to analyze Las Culturistas podcast episodes.
+
+Then, write a cool, funny, technical article about it.
+
+Main theme: The definitive list of the Las Culturistas Rules of Culture (but like more catchy).
+
+Outline Ideas:
+- Start out with light background/praise for the podcast.
+- Next, walk through downloading and analyzing the episodes.
+- - can I provide a google colab notebook that would allow people to run the code themselves?
+- - or at the very least a python package that would allow similar analysis?
+- - Analysis plans:
+- - - Use this link (is there an aggregator for all podcast rss?)
+        https://omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/F6816727-C503-47AC-A7AC-AE2700391B1E/935C500F-8BB0-436B-BA7F-AE2700391B49/podcast.rss
+- - - For each <item> in there, there should be a <media:content> element with a type="audio/mpeg" attribute
+        (is this true for all podcast RSS or just foreverdog/I<3Media?)
+- - - Write a script to search through the RSS feed.
+- - - For each <item>
+- - - - extract the media url
+- - - - - decision: download it immediately? Add it to a queue in another thread that is downloading? (like this a lot).
+- - - - - once downloaded:
+- - - - - - - use sqlalchemy to write metadata + audio content to sqlite? 
+- - - - - - - include additional/useful metadata from the rss feed
+                (would be cool to have a self-service kind of tool. find your rss feeed, point this tool at it, let it do its thing, boom you hvae a ui where you can explore word clouds/counts, topic analysis, sentiment analysis, etc.)
+    - Once everything is downloaded
+        - Feed through OpenAI
+        - Figure out how to store:
+            - Word counts
+            - Words/instances of words @ timestamps?
+            - "Rule of Culture" trigger phrase (+30s after)
+            - Number of times Taylor/Taylor Swift vs Tayla vs Tay(? other one they say)
+            - Happiest guests?
+            - Most vulgar episodes?
+    - Then, make some cool/typographic things to show off with.
+
+https://openai.com/blog/whisper/
+https://github.com/aziezahmed/podcast-player
+https://docs.sqlalchemy.org/en/14/
+https://docs.sqlalchemy.org/en/14/tutorial/index.html
+https://docs.sqlalchemy.org/en/14/orm/quickstart.html

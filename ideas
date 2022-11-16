@@ -17,3 +17,6 @@
 [ ] - add links to previous versions of the site; host previous versions
 [ ] - add sqlite logging for interesting things.
 [ ] - Einstein logo
+[ ] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
+[ ] - md/text format everything in /articles to HTML automatically (best effort)
+[ ] - pre-parse HTML files before actually parsing them in? Things like external link icon adding, other conveniences.
