@@ -151,6 +151,7 @@ div>p:first-child {
 
 #genString {
     font-size: 75%;
-    margin-top: 5%;
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
 }

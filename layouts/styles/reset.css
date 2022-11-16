@@ -13,12 +13,9 @@
 a,
 button {
     cursor: revert;
+    all: revert;
 }
 
 img {
     max-width: 100%;
-}
-
-button {
-    all: revert;
 }

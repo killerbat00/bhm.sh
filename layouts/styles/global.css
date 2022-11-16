@@ -159,6 +159,11 @@ iframe {
     height: 80vh;
 }
 
+button {
+    min-width: 44px;
+    min-height: 44px;
+}
+
 button:focus,
 button:focus-visible,
 button:focus-within {
