@@ -3,3 +3,7 @@ The vim sudo trick allows you to write to file that requires root permissions fo
 You can enter `w !sudo tee %` to write the actual without having to close, lose changes, and reopen.
 Additionally, you can add the following to your `.vimrc` to provide a shorter and easier to remember alternative:
 `cmap w!! w !sudo tee > /dev/null %`
+
+2022-11-16@21:19:45.000-05:00
+You can use a [target='_blank'] CSS selector to identify external links (if you make all external links open in new tabs).
+Then, you can add a ::after { content } rule in order to signify these as external! 
