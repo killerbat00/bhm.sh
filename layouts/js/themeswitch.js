@@ -18,12 +18,10 @@ var setTheme = function (newTheme) {
 
     if (newTheme === "dark") {
         navLinks.darkModeBtn.style.display = "none";
-        navLinks.lightModeBtn.style.display = "block";
-        navLinks.lightModeBtn.style.margin = "0 auto";
+        navLinks.lightModeBtn.style.display = "initial";
     } else if (newTheme === "light") {
         navLinks.lightModeBtn.style.display = "none";
-        navLinks.darkModeBtn.style.display = "block";
-        navLinks.darkModeBtn.style.margin = "0 auto";
+        navLinks.darkModeBtn.style.display = "initial";
     }
 }
 

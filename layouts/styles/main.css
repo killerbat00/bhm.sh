@@ -1,11 +1,4 @@
 /* main template */
-.emphasize {
-    margin-top: .25rem;
-    margin-bottom: .25rem;
-    font-size: 1.25rem;
-    line-height: 2rem;
-}
-
 #content-container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 800px;
@@ -19,24 +12,6 @@
     margin-left: -5rem;
     display: grid;
     grid-template-columns: 85% 15%;
-}
-
-@media screen and (max-width: 975px) {
-    #content-container {
-        max-width: 90%;
-        margin: 0 auto;
-    }
-
-    #header {
-        margin-left: 0;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    #header {
-        grid-template-columns: unset;
-        grid-auto-flow: row;
-    }
 }
 
 #homeLink,
@@ -60,11 +35,6 @@ nav>a:visited:hover,
     color: var(--highlight-color);
 }
 
-.activeLink:hover,
-.activeLink:visited:hover {
-    color: var(--text-color);
-}
-
 #homeLink:focus,
 #homeLink:focus-within,
 #homeLink:focus-visible {
@@ -86,78 +56,14 @@ nav>a:visited:hover,
 }
 
 #darkMode {
-    display: block;
-    margin: 0 auto;
-}
-
-@media screen and (max-width: 500px) {
-    #lightMode {
-        margin-top: 0.75rem !important;
-    }
-
-    #darkMode {
-        margin-top: 0.75rem !important;
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    #lightMode {
-        display: block;
-        margin: 0 auto;
-    }
-
-    #darkMode {
-        display: none;
-    }
-}
-
-nav {
-    font-size: 1.25rem;
-    line-height: 1rem;
-    text-align: center;
-    display: grid;
-    grid-auto-flow: column;
-}
-
-@media screen and (max-width: 500px) {
-    nav {
-        line-height: 2rem;
-        display: block;
-    }
-}
-
-nav>a {
-    padding: 8px;
-}
-
-nav>a:focus,
-nav>a:focus-visible,
-nav>a:focus-within {
-    padding: 6px;
-}
-
-ul a:focus,
-p a:focus,
-ul a:focus-visible,
-p a:focus-visible,
-ul a:focus-within,
-p a:focus-within {
-    margin: -2px;
-}
-
-nav>a>small {
-    font-size: 12px;
-}
-
-nav:first-child,
-div>p:first-child {
-    margin-top: 0;
+    display: initial;
 }
 
 #chyron {
     margin-left: 30%;
     max-width: fit-content;
-    /*background: rgb(255, 0, 0);
+    /* 🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈
+        background: rgb(255, 0, 0);
             background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 165, 0, 1) 16.6%, rgba(255, 255, 0, 1) 33.2%, rgba(0, 255, 0, 1) 49.8%, rgba(0, 0, 255, 1) 66.4%, rgba(75, 0, 130, 1) 83%, rgba(127, 0, 255, 1) 100%);
             background-clip: text;
             -webkit-background-clip: text;
@@ -176,4 +82,27 @@ div>p:first-child {
     text-align: center;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+@media screen and (max-width: 975px) {
+    #content-container {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    #header {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #header {
+        grid-template-columns: unset;
+        grid-auto-flow: row;
+    }
+
+    #lightMode,
+    #darkMode {
+        margin-top: 0.75rem !important;
+    }
 }

@@ -21,6 +21,7 @@
                     --blockquote-color: var(--blockquote-color-dark);
                     --text-color-aside: var(--text-color-aside-dark);
                     --highlight-color: var(--highlight-color-dark);
+                    --secondary-highlight-color: var(--secondary-highlight-dark);
                 }
             }
         </style>
