@@ -55,8 +55,8 @@
             <a id="nowNavLink" href="./now" title="Link to what Brian's doing now">Now</a>
             <a id="aboutNavLink" href="./about" title="Link to the page about Brian">About</a>
             <a id="resumeNavLink" href="./resume" title="Link to Brian's resumé">Resume</a>
-            <a target="_blank" href="https://www.github.com/killerbat00" title="Link to Brian's GitHub">GitHub<span aria-hidden="true">↗</span></a>
-            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/" title="Link to Brian's LinkedIn">LinkedIn<span aria-hidden="true">↗</span></a>
+            <a target="_blank" href="https://www.github.com/killerbat00" title="Link to Brian's GitHub">GitHub</a>
+            <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/" title="Link to Brian's LinkedIn">LinkedIn</a>
         </nav>
         <div id="content">{{#content}}</div>
         <p id="genString" style="margin-top: 5%">Copyright © 2012-2022 Brian Houston Morrow</p>

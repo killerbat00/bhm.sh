@@ -120,6 +120,10 @@ a {
     font-weight: bolder;
 }
 
+a[target="_blank"]::after {
+    content: "↗"
+}
+
 a:hover,
 a:visited:hover {
     color: var(--secondary-highlight-color);
