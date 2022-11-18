@@ -121,7 +121,8 @@ a {
 }
 
 a[target="_blank"]::after {
-    content: "↗"
+    font-family: monospace;
+    content: "↗";
 }
 
 a:hover,
