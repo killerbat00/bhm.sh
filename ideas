@@ -7,3 +7,4 @@
 [ ] - add sqlite logging for interesting things.
 [ ] - Einstein logo
 [ ] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
+[ ] - ChatGPT generated chyrons and titles.
