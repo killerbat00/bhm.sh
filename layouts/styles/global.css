@@ -73,7 +73,7 @@ h2 {
 }
 
 h3,
-.levelThree {
+.sectionHeader {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
 
@@ -141,10 +141,6 @@ ul {
     margin-left: 2rem;
 
     line-height: 1.75rem;
-}
-
-p~ul {
-    margin-top: -1rem;
 }
 
 ul a:focus,
