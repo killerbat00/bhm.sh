@@ -7,3 +7,6 @@ Additionally, you can add the following to your `.vimrc` to provide a shorter an
 2022-11-16@21:19:45.000-05:00
 You can use a [target='_blank'] CSS selector to identify external links (if you make all external links open in new tabs).
 Then, you can add a ::after { content } rule in order to signify these as external! 
+
+2022-12-04@19:54:28.000-05:00
+large language models (ChatGPT) are incredible. Get deeper into AI/ML.
