@@ -258,7 +258,7 @@ when isMainModule:
         port: Port(1992),
         address: "0.0.0.0",
         name: "bhm.sh",
-        version: "2022.11.11",
+        version: "2022.12.04",
         domain: AF_INET,
     )
 
