@@ -90,4 +90,33 @@ const chyrons* = [
     "FREE bits AND bytes!",
     "wow, what a great audience",
     "startup mode activated",
+    "too lazy to think of a new chyron",
+    "brought to you by ChatGPT and GPT-3",
 ]
+  # 1. "Too lazy to look for a new chyron?"
+  # 2. "It's not rocket science, it's software engineering"
+  # 3. "Robo-coding since 20XX"
+  # 4. "If you can't beat 'em, code 'em"
+  # 5. "Faster than the speed of bugs"
+  # 6. "Grumpy code-monkey at your service"
+  # 7. "Debugging the future"
+  # 8. "Lines of code and laughter"
+  # 9. "Bringing the LOLs to coding"
+#  1. "Welcome to the future of software engineering!"
+# 2. "Making software solutions since the 2000s!"
+# 3. "Robot support available upon request!"
+# 4. "Faster than the speed of light!"
+# 5. "Always up-to-date with the latest technology!"
+# 6. "No bug too small!"
+# 7. "Just one more line of code!"
+# 8. "Warning: May cause time travel!"
+# 9. "Come for the software, stay for the memes!"
+# 1. "Listen to Einstein, not me"
+# 2. "Errors may occur, but it's still worth a shot"
+# 3. "Dogs allowed, coders preferred"
+# 4. "Not as clever as Einstein, but better than average"
+# 5. "Some assembly required"
+# 6. "More caffeine, more code"
+# 7. "Coding like nobody's watching"
+# 8. "A place where sarcasm is encouraged"
+# 9. "Nerding out since '86"
