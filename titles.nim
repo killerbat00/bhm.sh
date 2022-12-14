@@ -14,71 +14,15 @@ const titles* = [
     "home of horrors (NOT scary)",
     "dreamscape",
     "cheeseburger in paradise",
+    "web of confusion",
+    "online oasis",
+    "virtual vogon village",
+    "pan-galactic gargle blaster",
+    "off-world colonies",
+    "digital dystopia",
+    "postmodern paradise",
+    "AI adventureland",
 ]
-
-# candidates from GPT-3
-# "Brian's Tower of Babel"
-# "Brian's Web of Confusion"
-# "Brian's Byte-Sized Bites"
-# "Brian's Matrix of Dreams"
-# "Brian's Kingdom of Coding"
-# "Brian's Virtual Vacation"
-# "Brian's Online Oasis"
-# "Brian's Interwebs of Intrigue"
-# "Brian's Portal to Programming"
-# "Brian's Labyrinth of Links"
-# "Brian's Interweb Wonderworld"
-# "Brian's Digital Palace"
-# "Brian's Home of High-Tech Hijinks"
-# "Brian's Cyber-Candyland"
-# "Brian's Online Universe"
-# "Brian's Starship Surfing"
-# "Brian's Web of Wonders"
-# "Brian's Galactically Good Pages"
-# "Brian's Intergalactic Bytes"
-# "Brian's Virtual Galaxy"
-# "Brian's Extra-Terrestrial Website"
-# "Brian's Interdimensional Page"
-# "Brian's Cosmic Corner"
-# "Brian's Star-Spangled Internet of Things"
-# "Brian's Outer Space is the Place to Be"
-# "Brian's Personal Portal to the Universe"
-# "Brian's Home for Wayward Aliens"
-# "Brian's Home of Happy Aliens"
-# "Brian's Interplanetary Dreamscape"
-# "Brian's Nebular Cheeseburger"
-# "Brian's Babel of Bytes",
-# "Brian's Hitchhiker's Haven on the Web",
-# "Brian's Digital Detour to the Ultimate Answer",
-# "Brian's Home on the Intergalactic Web",
-# "Brian's So Long and Thanks for All the Bytes",
-# "Brian's Personal Portal to the Galaxy",
-# "Brian's Virtual Vogon Village",
-# "Brian's Poetic Pan-Galactic Gargle Blaster",
-# "Brian's Country Corner in Deep Space",
-# "Brian's Interdimensional Dreamscape",
-# "Brian's Home of Horrors (NOT Scary) and Towels",
-# "Brian's Cheeseburger in the Vogon Cafe"
-# "Brian's Galactic Hang-out"
-# "Brian's Warp Zone"
-# "Brian's Infinity and Beyond"
-# "Brian's Inter-galactic Stopover"
-# "Brian's Warp-Speed Webpage"
-# "Brian's Far-Out Page"
-# "Brian's Sci-Fi Haven"
-# "Brian's Out-of-this-World Site"
-# "Brian's Cyber-Universe"
-# "Brian's Hyperdrive Homepage"
-# "Brian's Off-World Colonies"
-# "Brian's Neuromancer's Retreat"
-# "Brian's Snow Crash Oasis"
-# "Brian's Cyberpunk Hideaway"
-# "Brian's Matrix Mania"
-# "Brian's Digital Dystopia"
-# "Brian's Electric Sheep Sanctuary"
-# "Brian's Techno-Wonderland"
-# "Brian's Postmodern Paradise"
-# "Brian's AI Adventureland"
 
 const chyrons* = [
     "Now in technicolor",
@@ -92,31 +36,8 @@ const chyrons* = [
     "startup mode activated",
     "too lazy to think of a new chyron",
     "brought to you by ChatGPT and GPT-3",
+    "-1500,+0 LLOC",
+    "dogs encouraged",
+    "listen to Einstein, not me",
+    "so long and thanks for all the bytes",
 ]
-  # 1. "Too lazy to look for a new chyron?"
-  # 2. "It's not rocket science, it's software engineering"
-  # 3. "Robo-coding since 20XX"
-  # 4. "If you can't beat 'em, code 'em"
-  # 5. "Faster than the speed of bugs"
-  # 6. "Grumpy code-monkey at your service"
-  # 7. "Debugging the future"
-  # 8. "Lines of code and laughter"
-  # 9. "Bringing the LOLs to coding"
-#  1. "Welcome to the future of software engineering!"
-# 2. "Making software solutions since the 2000s!"
-# 3. "Robot support available upon request!"
-# 4. "Faster than the speed of light!"
-# 5. "Always up-to-date with the latest technology!"
-# 6. "No bug too small!"
-# 7. "Just one more line of code!"
-# 8. "Warning: May cause time travel!"
-# 9. "Come for the software, stay for the memes!"
-# 1. "Listen to Einstein, not me"
-# 2. "Errors may occur, but it's still worth a shot"
-# 3. "Dogs allowed, coders preferred"
-# 4. "Not as clever as Einstein, but better than average"
-# 5. "Some assembly required"
-# 6. "More caffeine, more code"
-# 7. "Coding like nobody's watching"
-# 8. "A place where sarcasm is encouraged"
-# 9. "Nerding out since '86"
