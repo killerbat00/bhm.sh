@@ -49,6 +49,8 @@
             </div>
             <button tabindex="0" type="button" id="darkMode" title="Enable dark mode">Dark Mode</button>
             <button tabindex="0" type="button" id="lightMode" title="Enable light mode">Light Mode</button>
+            <img width="100px" height="100px" src="./static/img/einstein-dark.png"></img>
+            <img width="100px" height="100px" src="./static/img/einstein-light.png"></img>
         </div>
         <nav>
             <a id="homeNavLink" href="./" title="Link to the home page">Home</a>
