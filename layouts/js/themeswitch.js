@@ -7,6 +7,8 @@ var navLinks = {
     resume: document.getElementById("resumeNavLink"),
     darkModeBtn: document.getElementById("darkMode"),
     lightModeBtn: document.getElementById("lightMode"),
+    einsteinDark: document.getElementById("einsteinDark"),
+    einsteinLight: document.getElementById("einsteinLight"),
 };
 
 var root = document.body;
@@ -19,9 +21,13 @@ var setTheme = function (newTheme) {
     if (newTheme === "dark") {
         navLinks.darkModeBtn.style.display = "none";
         navLinks.lightModeBtn.style.display = "initial";
+        navLinks.einsteinLight.style.display = "none";
+        navLinks.einsteinDark.style.display = "initial";
     } else if (newTheme === "light") {
         navLinks.lightModeBtn.style.display = "none";
         navLinks.darkModeBtn.style.display = "initial";
+        navLinks.einsteinDark.style.display = "none";
+        navLinks.einsteinLight.style.display = "initial";
     }
 }
 
