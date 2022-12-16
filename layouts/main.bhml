@@ -45,11 +45,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Brian Houston Morrow">
     {{#canonicalLink}}
-    <link rel="icon" type="image/png" sizes="32x32" href="./static/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./static/img/favicon-16x16.png">
-    <link rel="manifest" href="./static/site.webmanifest">
-    <link rel="apple-touch-icon" sizes="180x180" href="./static/img/apple-touch-icon.png">
-    <meta name="theme-color" content="#f80">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <meta name="theme-color" content="#b96d3a">
 </head>
 
 <body>
@@ -76,8 +76,8 @@
             <p id="genString" style="margin-top: 5%">Copyright © 2012-2022 Brian Houston Morrow</p>
             <p id="genString">{{#generationString}}</p>
             <p id="genString">{{#sillyString}}</p>
-            <img width="100px" id="einsteinDark" height="100px" alt="Illustration of Brian's dog Einstein" src="./static/img/einstein-dark-100x100.png"></img>
-            <img width="100px" id="einsteinLight" height="100px" alt="Illustration of Brian's dog Einstein" src="./static/img/einstein-light-100x100.png"></img>
+            <img width="100px" id="einsteinDark" height="100px" alt="Illustration of Brian's dog Einstein" src="/static/img/einstein-dark-100x100.png"></img>
+            <img width="100px" id="einsteinLight" height="100px" alt="Illustration of Brian's dog Einstein" src="/static/img/einstein-light-100x100.png"></img>
         </div>
     </div>
     <script>

@@ -53,21 +53,21 @@ var colorLink = (linkEl) => {
     linkEl.classList.add("activeLink");
 }
 
-var currentPage = window.location.pathname;
-switch (currentPage) {
-    case "/":
+var currentPage = window.location.pathname.split("/");
+switch (currentPage[1]) {
+    case "":
         colorLink(navLinks.home);
         break;
-    case "/now":
+    case "now":
         colorLink(navLinks.now);
         break;
-    case "/about":
+    case "about":
         colorLink(navLinks.about);
         break;
-    case "/resume":
+    case "resume":
         colorLink(navLinks.resume);
         break;
-    case "/extras":
+    case "extras":
         colorLink(navLinks.extras);
         break;
 }
