@@ -75,8 +75,8 @@
             <p id="genString" style="margin-top: 5%">Copyright © 2012-2022 Brian Houston Morrow</p>
             <p id="genString">{{#generationString}}</p>
             <p id="genString">{{#sillyString}}</p>
-            <img width="100px" id="einsteinDark" height="100px" src="./static/img/einstein-dark-100x100.png"></img>
-            <img width="100px" id="einsteinLight" height="100px" src="./static/img/einstein-light-100x100.png"></img>
+            <img width="100px" id="einsteinDark" height="100px" alt="Illustration of Brian's dog Einstein" src="./static/img/einstein-dark-100x100.png"></img>
+            <img width="100px" id="einsteinLight" height="100px" alt="Illustration of Brian's dog Einstein" src="./static/img/einstein-light-100x100.png"></img>
         </div>
     </div>
     <script>
