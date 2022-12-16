@@ -64,7 +64,6 @@
         </div>
         <nav>
             <a id="homeNavLink" href="./" title="Link to the home page">Home</a>
-            <a id="blogNavLink" href="./blog" title="Link to articles Brian has written">Articles</a>
             <a id="nowNavLink" href="./now" title="Link to what Brian's doing now">Now</a>
             <a id="aboutNavLink" href="./about" title="Link to the page about Brian">About</a>
             <a id="resumeNavLink" href="./resume" title="Link to Brian's resumé">Resume</a>
