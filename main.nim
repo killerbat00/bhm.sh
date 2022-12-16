@@ -240,12 +240,6 @@ proc serve(settings: Settings, routes: ref RouteTable) =
             let inRouter = (requestedUrl in routes)
             let inDynamic = (requestedUrl in DYNAMIC_FILES)
 
-            # womp, not in the router or dynamic files,
-            # or request to page deeper than the root. 404.
-            if (not (inRouter or inDynamic)) or (route.len > 1):
-                await req.respond(Http404, DYNAMIC_FILES["404"], ctx.htmlContentHeader.newHttpHeaders)
-                return
-
             # router
             if (inRouter):
                 res = routes[route[0]](req, ctx)
@@ -255,6 +249,11 @@ proc serve(settings: Settings, routes: ref RouteTable) =
                 ctx.data.canonicalLink = "<link rel=\"canonical\" href=\"https://bhm.sh/" & requestedUrl & "\">"
                 ctx.data.content = DYNAMIC_FILES[route[0]]
                 res = sendDynamicFile(req, ctx, LAYOUTS[MAIN_LAYOUT])
+            else:
+                # womp, not in the router or dynamic files,
+                await req.respond(Http404, DYNAMIC_FILES["404"], ctx.htmlContentHeader.newHttpHeaders)
+                return
+
         except:
             logException(settings)
             res = (code: Http500, content: "", headers: @[])
@@ -298,12 +297,24 @@ when isMainModule:
         return sendDynamicFile(req, ctx, LAYOUTS[MAIN_LAYOUT])
 
     proc extras(req: Request, ctx: RequestContext): HttpResponse {.gcsafe.} =
-        ctx.data.canonicalLink = "<link rel=\"canonical\" href=\"https://bhm.sh/blog\">"
-        ctx.data.content = fmt"""
-        <div>{ARTICLES.len} articles</div>
-        """
-        #ctx.data.content = ARTICLES[req.
+        let route = toSeq(req.url.path.split("/"))[1 .. ^1] # always starts with `/`; discard first item
+        if (route.len == 1):
+            ctx.data.canonicalLink = "<link rel=\"canonical\" href=\"https://bhm.sh/blog\">"
+            ctx.data.content = fmt"""
+            <div>{ARTICLES.len} articles</div>
+            """
+            return sendDynamicFile(req, ctx, LAYOUTS[ARTICLE_LAYOUT])
+
+        let articleName = route[1]
+        if (not (articleName in ARTICLES)):
+            return (code: Http404, content: DYNAMIC_FILES["404"], headers: ctx.htmlContentHeader)
+
+        ctx.data.canonicalLink = "<link rel=\"canonical\" href=\"https://bhm.sh/blog/$1\">" % articleName
+        ctx.data.content = ARTICLES[articleName].content
         return sendDynamicFile(req, ctx, LAYOUTS[ARTICLE_LAYOUT])
+
+
+
 
     randomize()
     let routes = new(RouteTable)
