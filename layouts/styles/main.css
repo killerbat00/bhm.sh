@@ -50,14 +50,6 @@ nav>a:visited:hover,
     margin-bottom: 0.75rem !important;
 }
 
-#lightMode {
-    display: none;
-}
-
-#darkMode {
-    display: initial;
-}
-
 #chyron {
     margin-left: 30%;
     max-width: fit-content;
