@@ -5,6 +5,7 @@ var navLinks = {
     now: document.getElementById("nowNavLink"),
     about: document.getElementById("aboutNavLink"),
     resume: document.getElementById("resumeNavLink"),
+    extras: document.getElementById("extrasNavLink"),
     darkModeBtn: document.getElementById("darkMode"),
     lightModeBtn: document.getElementById("lightMode"),
     einsteinDark: document.getElementById("einsteinDark"),
@@ -55,20 +56,18 @@ var colorLink = (linkEl) => {
 var currentPage = window.location.pathname;
 switch (currentPage) {
     case "/":
-    case "/index":
-    case "/index.html":
         colorLink(navLinks.home);
         break;
     case "/now":
-    case "/now.html":
         colorLink(navLinks.now);
         break;
     case "/about":
-    case "/about.html":
         colorLink(navLinks.about);
         break;
     case "/resume":
-    case "/resume.html":
         colorLink(navLinks.resume);
+        break;
+    case "/extras":
+        colorLink(navLinks.extras);
         break;
 }

@@ -66,6 +66,7 @@
             <a id="homeNavLink" href="./" title="Link to the home page">Home</a>
             <a id="nowNavLink" href="./now" title="Link to what Brian's doing now">Now</a>
             <a id="aboutNavLink" href="./about" aria-label="Link to the page about Brian" title="Link to the page about Brian">About</a>
+            <a id="extrasNavLink" href="./extras" aria-label="Link to illustrations, lists, blog posts, and other miscellany" title="Link to illustrations, lists, blog posts, and other miscellany">Extras</a>
             <a id="resumeNavLink" href="./resume" title="Link to Brian's resumé">Resume</a>
             <a target="_blank" href="https://www.github.com/killerbat00" title="Link to Brian's GitHub">GitHub</a>
             <a target="_blank" href="https://www.linkedin.com/in/brian-morrow-6a6a82140/" title="Link to Brian's LinkedIn">LinkedIn</a>
