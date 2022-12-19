@@ -67,7 +67,7 @@ switch (currentPage[1]) {
     case "resume":
         colorLink(navLinks.resume);
         break;
-    case "extras":
+    case "vault":
         colorLink(navLinks.extras);
         break;
 }

@@ -6,3 +6,4 @@
 [ ] - add links to previous versions of the site; host previous versions
 [ ] - add sqlite logging for interesting things.
 [ ] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
+[ ] - routes as a config file?
