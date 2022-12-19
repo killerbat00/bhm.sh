@@ -1,0 +1,20 @@
+Advent of Code 2022 is here!
+
+Intro:
+This year, I'm back to completing Advent of Code in Nim after my foray with Python last year.
+My goal for this year is to use as many advanced Nim features as possible.
+My code is hosted here: https://github.com/killerbat00/adventofcode.
+
+For the first day, I focused on getting a code runner setup. My basic idea was a single entrypoint file (main.nim) that gathers code files for each day, executes them, and returns the result.
+Each day's code file has a similar structure and ultimately returns `true` if the day matches the expected result and `false` otherwise. To run the code, all you need to do is compile and run `main.nim`; it handles the rest.
+
+`main.nim` acts as an orchestrator, displaying a holiday-themed status page and handling the reading, compilation, and execution of each day's code.
+If a given day's code fails, `main.nim` will display a short error message and continue on its way. 
+
+My typical build script is also in use TODO: elaborate more about that.
+
+For faster iteration, `main.nim` (and the build script) allow executing a single day's code.
+
+Day 1:
+https://adventofcode.com/2022/day/1
+
