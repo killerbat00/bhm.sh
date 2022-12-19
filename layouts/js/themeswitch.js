@@ -49,7 +49,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", fun
     setTheme(newTheme);
 });
 
-var colorLink = (linkEl) => {
+var colorLink = function (linkEl) {
     linkEl.classList.add("activeLink");
 }
 
