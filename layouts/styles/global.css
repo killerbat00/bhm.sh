@@ -232,4 +232,9 @@ button:focus-within {
         line-height: 2rem;
         display: block;
     }
+
+    object {
+        width: 100%;
+        margin-left: 0;
+    }
 }
