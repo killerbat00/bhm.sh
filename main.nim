@@ -312,9 +312,6 @@ when isMainModule:
         ctx.data.content = ARTICLES[articleName].content
         return sendDynamicFile(req, ctx, LAYOUTS[MAIN_LAYOUT])
 
-
-
-
     randomize()
     let routes = new(RouteTable)
     routes.addRoute(@["", "/", "index", "index.html"], index)
