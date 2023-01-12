@@ -187,6 +187,27 @@ button:focus-within {
     border: 4px solid var(--highlight-color);
 }
 
+blockquote p {
+    padding: .75rem;
+    background: var(--blockquote-color);
+    border-radius: 5px;
+    border-left-color: var(--highlight-color);
+    border-left-style: solid;
+    border-left-width: 5px;
+}
+
+blockquote p::before {
+    content: '\201C';
+}
+
+blockquote p::after {
+    content: '\201D';
+}
+
+cite {
+    margin-left: 8px;
+}
+
 /* Global classes */
 .emphasize {
     margin-top: .25rem;
