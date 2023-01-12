@@ -5,5 +5,8 @@
     [ ] - md/text format everything in /articles to HTML automatically (best effort)
 [ ] - add links to previous versions of the site; host previous versions
 [ ] - add sqlite logging for interesting things.
+    - page_visits
+    - application_events
+    - errors
 [ ] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
 [ ] - routes as a config file?
