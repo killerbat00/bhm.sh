@@ -13,7 +13,6 @@ ExecStart=/home/bhm/bhm.sh
 
 Restart=on-failure
 RestartSec=10
-StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=bhmshservice
 
