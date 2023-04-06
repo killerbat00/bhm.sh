@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-magenta='\e[1;35m'
 red='\e[1;31m'
 white='\e[0;37m'
 
@@ -32,7 +31,7 @@ dry_run() {
         if [ -f $PRE_BUILD_HOOKS ]; then
             echo "./$PRE_BUILD_HOOKS"
         fi
-        echo "nim c -o:${RLS_OUTPUT_FILE} -d:release --opt:speed ${RUN} ${SRC_FILE}"
+        echo "nim c -o:${RLS_OUTPUT_FILE} -d:danger --opt:speed --passL:-s --passC:-flto ${RUN} ${SRC_FILE}"
     else
         echo -e "$red Include one of {dev|rls} $white"
         usage
@@ -54,7 +53,7 @@ wet_run() {
         if [ -f $PRE_BUILD_HOOKS ]; then
             ./$PRE_BUILD_HOOKS
         fi
-        nim c -o:$RLS_OUTPUT_FILE -d:release --opt:speed $RUN $SRC_FILE
+        nim c -o:$RLS_OUTPUT_FILE -d:danger --opt:speed --passL:-s --passC:-flto $RUN $SRC_FILE
     else
         echo -e "$red Include one of {dev|rls} $white"
         usage
