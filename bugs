@@ -1,1 +1,1 @@
-[ ] - navigation bar width/positioning flickers when changing pages. Likely due to font change & padding.
+[X] - navigation bar width/positioning flickers when changing pages. Likely due to font change & padding.
