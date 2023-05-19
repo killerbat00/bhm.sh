@@ -40,4 +40,6 @@ const chyrons* = [
     "dogs encouraged",
     "listen to Einstein, not me",
     "so long and thanks for all the bytes",
+    "pre-alpha",
+    "AI-generated",
 ]
