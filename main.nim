@@ -179,9 +179,6 @@ proc printInfo(req: Request) =
         else:
             referer = "None"
 
-        if referer.len == 0:
-            referer = req.headers["HTTP-REFERER"]
-
         echo fmt"{getTime().local} - {req.hostname} {req.reqMethod} {req.url.path} {req.url.query} {referer}"
 
 proc logException(settings: Settings) =
