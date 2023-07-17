@@ -171,7 +171,14 @@ PID:          {$pid}"""
 
 proc printInfo(req: Request) =
     when not defined(release):
-        var referer = req.headers["Http-Referer"]
+        var referer: string
+        if req.headers.hasKey("Http-Referer"):
+            referer = req.headers["Http-Referer"]
+        elif req.headers.hasKey("HTTP-REFERER"):
+            referer = req.headers["HTTP-REFERER"]
+        else:
+            referer = "None"
+
         if referer.len == 0:
             referer = req.headers["HTTP-REFERER"]
 
