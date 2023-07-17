@@ -15,22 +15,15 @@ OUTPUT_DIR=bin
 RLS_OUTPUT_FILE="${OUTPUT_DIR}"/bhm.sh
 DEV_OUTPUT_FILE="${RLS_OUTPUT_FILE}"-DEV
 
-PRE_BUILD_HOOKS=hooks.sh
 
 dry_run() {
     local MODE=$1
     local RUN=$2
     if [[ "${MODE,,}" == "dev" ]]; then
         echo "rm ${DEV_OUTPUT_FILE}"
-        if [ -f $PRE_BUILD_HOOKS ]; then
-            echo "./$PRE_BUILD_HOOKS"
-        fi
         echo "nim c -o:${DEV_OUTPUT_FILE} ${RUN} ${SRC_FILE}"
     elif [[ "${MODE,,}" == "rls" ]]; then
         echo "rm ${RLS_OUTPUT_FILE}"
-        if [ -f $PRE_BUILD_HOOKS ]; then
-            echo "./$PRE_BUILD_HOOKS"
-        fi
         echo "nim c -o:${RLS_OUTPUT_FILE} -d:danger --opt:speed --passL:-s --passC:-flto ${RUN} ${SRC_FILE}"
     else
         echo -e "$red Include one of {dev|rls} $white"
@@ -44,15 +37,9 @@ wet_run() {
     local RUN=$2
     if [[ "${MODE,,}" == "dev" ]]; then
         rm $DEV_OUTPUT_FILE
-        if [ -f $PRE_BUILD_HOOKS ]; then
-            ./$PRE_BUILD_HOOKS
-        fi
         nim c -o:$DEV_OUTPUT_FILE $RUN $SRC_FILE
     elif [[ "${MODE,,}" == "rls" ]]; then
         rm $RLS_OUTPUT_FILE
-        if [ -f $PRE_BUILD_HOOKS ]; then
-            ./$PRE_BUILD_HOOKS
-        fi
         nim c -o:$RLS_OUTPUT_FILE -d:danger --opt:speed --passL:-s --passC:-flto $RUN $SRC_FILE
     else
         echo -e "$red Include one of {dev|rls} $white"
