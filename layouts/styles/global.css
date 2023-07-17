@@ -209,6 +209,11 @@ cite {
     margin-left: 8px;
 }
 
+sub {
+    font-size: .75rem;
+    line-height: 1rem;
+}
+
 /* Global classes */
 .emphasize {
     margin-top: .25rem;
