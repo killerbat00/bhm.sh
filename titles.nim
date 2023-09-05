@@ -22,6 +22,8 @@ const titles* = [
     "digital dystopia",
     "postmodern paradise",
     "AI adventureland",
+    "mushroom kingdom",
+    "1992",
 ]
 
 const chyrons* = [
@@ -42,4 +44,5 @@ const chyrons* = [
     "so long and thanks for all the bytes",
     "pre-alpha",
     "AI-generated",
+    "now engaged",
 ]
