@@ -87,6 +87,11 @@ nav>a:visited:hover,
 }
 
 @media screen and (max-width: 500px) {
+    #content-container {
+        min-width: 20em;
+        margin: 0 12px;
+    }
+
     #header {
         grid-template-columns: unset;
         grid-auto-flow: row;
