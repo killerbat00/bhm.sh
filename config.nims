@@ -2,7 +2,7 @@
 
 import os, strformat
 
-version = "2024.01.04a"
+version = "2024.01.04b"
 author = "brian houston morrow"
 description = "my personal website"
 binDir = "bin"
