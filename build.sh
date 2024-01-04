@@ -16,31 +16,15 @@ RLS_OUTPUT_FILE="${OUTPUT_DIR}"/bhm.sh
 DEV_OUTPUT_FILE="${RLS_OUTPUT_FILE}"-DEV
 
 
-dry_run() {
-    local MODE=$1
-    local RUN=$2
-    if [[ "${MODE,,}" == "dev" ]]; then
-        echo "rm ${DEV_OUTPUT_FILE}"
-        echo "nim c -o:${DEV_OUTPUT_FILE} ${RUN} ${SRC_FILE}"
-    elif [[ "${MODE,,}" == "rls" ]]; then
-        echo "rm ${RLS_OUTPUT_FILE}"
-        echo "nim c -o:${RLS_OUTPUT_FILE} -d:danger --opt:speed --passL:-s --passC:-flto ${RUN} ${SRC_FILE}"
-    else
-        echo -e "$red Include one of {dev|rls} $white"
-        usage
-        exit 1
-    fi
-}
-
 wet_run() {
     local MODE=$1
     local RUN=$2
     if [[ "${MODE,,}" == "dev" ]]; then
-        rm $DEV_OUTPUT_FILE
-        nim c -o:$DEV_OUTPUT_FILE $RUN $SRC_FILE
+        nim clean
+        nim runDev
     elif [[ "${MODE,,}" == "rls" ]]; then
-        rm $RLS_OUTPUT_FILE
-        nim c -o:$RLS_OUTPUT_FILE -d:danger --opt:speed --passL:-s --passC:-flto $RUN $SRC_FILE
+        nim clean
+        nim buildRls
     else
         echo -e "$red Include one of {dev|rls} $white"
         usage
@@ -52,12 +36,10 @@ usage() {
     local program_name
     program_name=${0##*/}
     cat <<EOF
-Usage: $program_name [-t] {dev|rls} [-r]
+Usage: $program_name [-t] {dev|rls}
 Options:
-    -t      dry run, echos commands without executing
-    dev     build development version
+    dev     build and run development version
     rls     build release version
-    -r      run after building
 EOF
 }
 
@@ -65,10 +47,6 @@ main() {
     case "$1" in
         ''|-h|--help)
             usage
-            exit 0
-            ;;
-        -t)
-            dry_run $2 $3
             exit 0
             ;;
         dev|rls|DEV|RLS)
