@@ -24,6 +24,9 @@ const titles* = [
     "AI adventureland",
     "mushroom kingdom",
     "1992",
+    "Midwestern Way Station",
+    "Spin Membrane",
+
 ]
 
 const chyrons* = [
@@ -45,4 +48,7 @@ const chyrons* = [
     "pre-alpha",
     "AI-generated",
     "now engaged",
+    "via your local collapsar",
+    "it's a relativistic thing, you wouldn't understand",
+    "24th century telepaths welcome"
 ]
