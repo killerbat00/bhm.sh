@@ -56,7 +56,7 @@
     <div id="content-container">
         <div id="header">
             <div id="header-col-1">
-                <h1><a id="homeLink" href="./" aria-label="Link to the home page">{{#pageTitle}}</a></h1>
+                <h1><a id="homeLink" href="./" aria-label="Link to the home page">Brian's {{#pageTitle}}</a></h1>
                 <div id="chyron">{{#chyron}}</div>
             </div>
             <button tabindex="0" type="button" id="darkMode" title="Enable dark mode">Dark Mode</button>
