@@ -10,12 +10,6 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-SRC_FILE=main.nim
-OUTPUT_DIR=bin
-RLS_OUTPUT_FILE="${OUTPUT_DIR}"/bhm.sh
-DEV_OUTPUT_FILE="${RLS_OUTPUT_FILE}"-DEV
-
-
 wet_run() {
     local MODE=$1
     local RUN=$2
