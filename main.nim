@@ -63,7 +63,7 @@ proc slurpStaticFiles: Table[string, string] =
     for entry in walkDirRec("static", {pcFile, pcDir}):
         if dirExists(entry):
             continue
-        if extractFilename(entry)[0] == '.':
+        if extractFilename(entry)[0] == '_':
             continue
         result[entry] = staticRead(entry)
 
@@ -80,7 +80,7 @@ proc slurpLayouts: Table[string, string] =
         for entry2 in walkDirRec(entry, {pcDir, pcFile}):
             if dirExists(entry2):
                 continue
-            if extractFilename(entry2)[0] == '.':
+            if extractFilename(entry2)[0] == '_':
                 continue
             includedContent[entry2] = staticRead(entry2)
 
@@ -88,7 +88,7 @@ proc slurpLayouts: Table[string, string] =
     for entry in walkDirRec("layouts", {pcFile}):
         if includedContent.hasKey(entry):
             continue
-        if extractFilename(entry)[0] == '.':
+        if extractFilename(entry)[0] == '_':
             continue
         layouts[entry] = staticRead(entry)
 
@@ -109,7 +109,7 @@ proc slurpDynamicFiles: Table[string, string] =
     for entry in walkDirRec("dynamic", {pcFile}):
         let contents = staticRead(entry)
         let (_, name, ext) = entry.splitFile()
-        if name[0] == '.':
+        if name[0] == '_':
             continue
         result[name & ext] = contents
         result[name] = contents
