@@ -1,2 +1,1 @@
 alias bd='./build.sh dev'
-alias bdr='./build.sh dev -r'

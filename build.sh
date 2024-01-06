@@ -15,7 +15,7 @@ wet_run() {
     local RUN=$2
     if [[ "${MODE,,}" == "dev" ]]; then
         nim clean
-        nim runDev
+        nim hotReload
     elif [[ "${MODE,,}" == "rls" ]]; then
         nim clean
         nim buildRls
