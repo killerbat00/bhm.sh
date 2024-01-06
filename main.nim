@@ -119,6 +119,8 @@ const LAYOUTS = slurpLayouts()
 const DYNAMIC_FILES = slurpDynamicFiles()
 
 #const ARTICLES = slurpArticles()
+const IP_ADDR* = "0.0.0.0"
+const PORT_NUM* = 1992
 const VERSION = "2024.01.04b"
 const VERSION_URL = "https://github.com/killerbat00/bhm.sh/releases/tag/v$1" % VERSION
 const VERSION_LINK = fmt"<a target='_blank' href='{VERSION_URL}' title='Link to current webserver release tag'>{VERSION}</a>"
@@ -270,8 +272,8 @@ setControlCHook(handleCtrlC)
 when isMainModule:
     let settings = Settings(
         mimes: newMimetypes(),
-        port: Port(1992),
-        address: "0.0.0.0",
+        port: Port(PORT_NUM),
+        address: IP_ADDR,
         name: "bhm.sh",
         version: VERSION,
         domain: AF_INET,

@@ -8,5 +8,5 @@
     - page_visits
     - application_events
     - errors
-[ ] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
+[X] - HMR via inotifywait on certain files/dirs. get the dev cycle down to near-0.
 [ ] - routes as a config file?
