@@ -2,12 +2,12 @@
 
 import os 
 
-version = "2024.01.04b"
-author = "brian houston morrow"
-description = "my personal website"
-binDir = "bin"
-
-requires("nim >= 2.0.0")
+task hotReload, "compiles and runs in dev mode with hot reload":
+    --forceBuild:on
+    --hints:off
+    --run
+    --out:"bin/hotreload-DEV"
+    setCommand "c", "hotreload.nim"
 
 task runDev, "compiles and runs in dev mode":
     --forceBuild:on
