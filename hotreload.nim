@@ -23,12 +23,13 @@ proc getFileTimes(files: var Table[string, Time]) =
 proc main() = 
     let nimPath = "/Users/bhm/.nimble/bin/nim"
     let binPath = getCurrentDir() / "bin"
+    let progName = "bhm.sh-DEV"
 
     echo "Building..."
     discard execCmd(&"{nimPath} buildDev")
 
     echo "Starting webserver..."
-    var curP: Process = startProcess(&"{binPath}/bhm.sh-DEV", options = {poParentStreams})
+    var curP: Process = startProcess(&"{binPath}/{progName}", options = {poParentStreams})
     openDefaultBrowser(&"http://{IP_ADDR}:{PORT_NUM}")
 
     var files: Table[string, Time] = initTable[string, Time]()
@@ -46,7 +47,7 @@ proc main() =
                 echo "Rebuilding..."
                 discard execCmd(&"{nimPath} buildDev")
                 echo "Restarting..."
-                curP = startProcess(&"{binPath}/bhm.sh-DEV", options = {poParentStreams})
+                curP = startProcess(&"{binPath}/{progName}", options = {poParentStreams})
                 openDefaultBrowser(&"http://{IP_ADDR}:{PORT_NUM}")
                 continue
 
