@@ -297,8 +297,12 @@ when isMainModule:
         ])
         return sendDynamicFile(req, ctx, LAYOUTS[MAIN_LAYOUT])
 
+    proc version(req: REquest, ctx: RequestContext): HttpResponse {.gcsafe.} =
+        return (code: Http200, content: VERSION, headers: ctx.htmlContentHeader)
+
     randomize()
     let routes = new(RouteTable)
     routes.addRoute(@["", "/", "index", "index.html"], index)
+    routes.addRoute(@["v", "version"], version)
     serve(settings, routes)
     runForever()
