@@ -228,14 +228,18 @@ proc serve(settings: Settings, routes: ref RouteTable) =
                 await sendResponse(req, res)
                 return
 
-            # ignore QSP
-            if req.url.query.len > 0:
-                await req.respond(Http500, "", @[].newHttpHeaders)
-                return
-
             let requestedUrl = route[0].splitFile[1]
             let inRouter = (requestedUrl in routes)
             let inDynamic = (requestedUrl in DYNAMIC_FILES)
+
+            # ignore QSP for non-router pages.
+            if req.url.query.len > 0:
+                if (inRouter):
+                    res = routes[route[0]](req, ctx)
+                    await sendResponse(req, res)
+                    return
+                await req.respond(Http500, "", @[].newHttpHeaders)
+                return
 
             # router
             if (inRouter):
@@ -247,7 +251,7 @@ proc serve(settings: Settings, routes: ref RouteTable) =
                 ctx.data.content = DYNAMIC_FILES[route[0]]
                 res = sendDynamicFile(req, ctx, LAYOUTS[MAIN_LAYOUT])
             else:
-                # womp, not in the router or dynamic files,
+                # womp, not in the router or dynamic files
                 await req.respond(Http404, DYNAMIC_FILES["404"], ctx.htmlContentHeader.newHttpHeaders)
                 return
 
