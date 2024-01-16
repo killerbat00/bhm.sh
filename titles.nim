@@ -50,5 +50,6 @@ const chyrons* = [
     "now engaged",
     "via your local collapsar",
     "it's a relativistic thing, you wouldn't understand",
-    "24th century telepaths welcome"
+    "24th century telepaths welcome",
+    "now deployed automatically!"
 ]
