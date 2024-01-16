@@ -9,19 +9,6 @@ on:
 jobs:
   build:
     env:
-      AUTHOR: hiteshjasani
-      REPO: nim-hello-world
-      IMAGE: hello-world-ubuntu
-      VERSION: 0.1
-      NIM_VERSION: 2.1.1
-      OS_VERSION: ubuntu
-
-    runs-on: ubuntu-latest
-
-    steps:
-jobs:
-  build:
-    env:
       NIM_VERSION: 1.2.0
 
     runs-on: ubuntu-latest
