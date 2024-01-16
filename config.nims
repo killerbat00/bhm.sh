@@ -62,7 +62,7 @@ task buildRls, "compiles in release mode":
     --out:"bin/bhm.sh"
     setCommand "c", "main.nim"
 
-task clean, "cleans bin/ dir":
-    if dirExists(binDir):
-        rmDir(binDir)
-        mkDir(binDir)
+#task clean, "cleans bin/ dir":
+#    if dirExists(binDir):
+#        rmDir(binDir)
+#        mkDir(binDir)
