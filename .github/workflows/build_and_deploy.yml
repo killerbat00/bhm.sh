@@ -72,7 +72,7 @@ jobs:
       run: ssh -t bhmsh 'service bhmsh stop'
     
     - name: Copy binary
-      run: scp bin/bhm.sh root@bhmsh:home/bhm/
+      run: scp bin/bhm.sh root@bhmsh:/home/bhm/
 
     - name: Start the server
       run: ssh -t bhmsh 'service bhmsh start'
