@@ -44,7 +44,7 @@ jobs:
     - name: Install zippy
       run: |
         export PATH=$HOME/.nimble/bin:$PATH
-        nimble install zippy
+        nimble -y install zippy
 
     - name: Build project
       run: |
