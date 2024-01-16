@@ -26,6 +26,26 @@ html {
     --secondary-highlight-light: #3a6db9;
     --secondary-highlight-dark: #05d7cd;
     --secondary-highlight-color: var(--secondary-highlight-light);
+
+    --rainbow-gradient-light: linear-gradient(90deg,
+            rgba(220, 0, 0, 1) 0%,
+            rgba(220, 140, 0, 1) 16.6%,
+            rgba(220, 220, 0, 1) 33.2%,
+            rgba(0, 220, 0, 1) 49.8%,
+            rgba(0, 0, 220, 1) 66.4%,
+            rgba(65, 0, 130, 1) 83%,
+            rgba(117, 0, 255, 1) 100%);
+
+    --rainbow-gradient-dark: linear-gradient(90deg,
+            rgba(255, 50, 50, 1) 0%,
+            rgba(255, 185, 50, 1) 16.6%,
+            rgba(255, 255, 50, 1) 33.2%,
+            rgba(50, 255, 50, 1) 49.8%,
+            rgba(50, 50, 255, 1) 66.4%,
+            rgba(125, 50, 230, 1) 83%,
+            rgba(177, 50, 255, 1) 100%);
+    --rainbow-gradient-color: var(--rainbow-gradient-light);
+
 }
 
 /* global element styles and typography */
@@ -36,6 +56,7 @@ html {
     --text-color-aside: var(--text-color-aside-dark);
     --highlight-color: var(--highlight-color-dark);
     --secondary-highlight-color: var(--secondary-highlight-dark);
+    --rainbow-gradient-color: var(--rainbow-gradient-dark);
 }
 
 ::selection {
