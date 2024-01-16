@@ -41,6 +41,10 @@ jobs:
         curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
         sh init.sh -y
 
+    - name: Install zippy
+      run: |
+        nimble install zippy
+
     - name: Build project
       run: |
         export PATH=$HOME/.nimble/bin:$PATH
