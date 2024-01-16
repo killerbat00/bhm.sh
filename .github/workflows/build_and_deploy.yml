@@ -1,4 +1,4 @@
-name: Build Native
+name: build
 
 on:
   push:
@@ -17,6 +17,23 @@ jobs:
     steps:
     - name: Setup environment
       run: echo "::set-env name=NIM_VERSION::$NIM_VERSION"
+
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$DEPLOY_KEY" > ~/.ssh/deploy.key
+        chmod 600 ~/.ssh/deploy.key
+        cat >>~/.ssh/config <<END
+        Host bhmsh 
+          HostName $SSH_HOST
+          User $SSH_USER
+          IdentityFile ~/.ssh/deploy.key
+          StrictHostKeyChecking no
+        END
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
 
     - uses: actions/checkout@v2
 
@@ -50,11 +67,12 @@ jobs:
       run: |
         export PATH=$HOME/.nimble/bin:$PATH
         nim buildRls
-  
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: release-version
-        path: |
-          bin
+    
+    - name: Stop the server
+      run: ssh -t bhmsh 'service bhmsh stop'
+    
+    - name: Copy binary
+      run: scp bin/bhm.sh root@bhmsh:~/
 
+    - name: Start the server
+      run: ssh -t bhmsh 'service bhmsh start'
