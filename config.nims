@@ -1,7 +1,7 @@
 #!/usr/bin/env -S nim --hints:off
 
-import os 
 import std/distros
+from os import dirExists
 
 var binDir = "bin"
 
