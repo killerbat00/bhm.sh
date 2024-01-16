@@ -43,12 +43,12 @@ jobs:
 
     - name: Install zippy
       run: |
+        export PATH=$HOME/.nimble/bin:$PATH
         nimble install zippy
 
     - name: Build project
       run: |
         export PATH=$HOME/.nimble/bin:$PATH
-        echo $PATH
         nim buildRls
   
     - name: Archive production artifacts
