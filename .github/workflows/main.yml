@@ -19,13 +19,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+jobs:
+  build:
+    env:
+      NIM_VERSION: 1.2.0
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup environment
+      run: echo "::set-env name=NIM_VERSION::$NIM_VERSION"
+
     - uses: actions/checkout@v2
 
-    - name: Build
-      run: >
-        docker run -v `pwd`:/usr/src/app -w /usr/src/app
-        nimlang/nim:$NIM_VERSION-$OS_VERSION
+    - name: Cache choosenim
+      id: cache-choosenim
+      uses: actions/cache@v1
+      with:
+        path: ~/.choosenim
+        key: ${{ runner.os }}-choosenim-${{ env.NIM_VERSION }}
+
+    - name: Cache nimble
+      id: cache-nimble
+      uses: actions/cache@v1
+      with:
+        path: ~/.nimble
+        key: ${{ runner.os }}-nimble-${{ env.NIM_VERSION }}
+
+    - name: Install Nim
+      if: steps.cache-choosenim.outputs.cache-hit != 'true' || steps.cache-nimble.outputs.cache-hit != 'true'
+      run: |
+        export CHOOSENIM_CHOOSE_VERSION="$NIM_VERSION"
+        curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+        sh init.sh -y
+
+    - name: Build project
+      run: |
+        export PATH=$HOME/.nimble/bin:$PATH
+        echo $PATH
         nim buildRls
+  
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
