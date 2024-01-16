@@ -3,6 +3,8 @@
 import os 
 import std/distros
 
+var binDir = "bin"
+
 task hotReload, "compiles and runs in dev mode with hot reload":
     --forceBuild:on
     --hints:off
