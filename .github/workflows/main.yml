@@ -10,6 +10,7 @@ jobs:
   build:
     env:
       NIM_VERSION: 1.2.0
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     runs-on: ubuntu-latest
 
