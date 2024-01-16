@@ -1,0 +1,34 @@
+name: Build Native
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    env:
+      AUTHOR: hiteshjasani
+      REPO: nim-hello-world
+      IMAGE: hello-world-ubuntu
+      VERSION: 0.1
+      NIM_VERSION: 2.1.1
+      OS_VERSION: ubuntu
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: >
+        docker run -v `pwd`:/usr/src/app -w /usr/src/app
+        nimlang/nim:$NIM_VERSION-$OS_VERSION
+        nim buildRls
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-version
+        path: |
+          bin
+
