@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     env:
-      NIM_VERSION: 2.1.1
+      NIM_VERSION: devel
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     runs-on: ubuntu-latest
